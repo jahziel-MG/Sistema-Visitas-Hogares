@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alumnos | Sistema de Visitas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            Sistema de Visitas a Hogares
+        </div>
+
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="alumnos.html">Alumnos</a>
+            <a href="profesores.html">Profesores</a>
+            <a href="visitas.html">Visitas</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ==============================
+         CONTENIDO PRINCIPAL
+    =============================== -->
+
+    <main>
+
+        <section class="pagina-header">
+
+            <div>
+                <span class="etiqueta">GESTIÓN ACADÉMICA</span>
+
+                <h1>Alumnos</h1>
+
+                <p>
+                    Registra y administra la información de los alumnos
+                    que forman parte del sistema.
+                </p>
+            </div>
+
+            <button class="btn-principal" id="btn-nuevo-alumno">
+                + Nuevo alumno
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             BUSCADOR
+        =============================== -->
+
+        <section class="busqueda">
+
+            <input
+                type="text"
+                id="buscar-alumno"
+                placeholder="🔎 Buscar por nombre, apellido o código..."
+            >
+
+        </section>
+
+
+        <!-- ==============================
+             TABLA DE ALUMNOS
+        =============================== -->
+
+        <section class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Código</th>
+                        <th>DNI</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Grado</th>
+                        <th>Sección</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabla-alumnos">
+
+                    <!--
+                        JavaScript agregará aquí
+                        los alumnos registrados.
+                    -->
+
+                  <tr>
+    <td>A001</td>
+    <td>12345678</td>
+    <td>Pérez García</td>
+    <td>Juan</td>
+    <td>3°</td>
+    <td>A</td>
+    <td>
+        <button type="button" class="btn-editar">
+            Editar
+        </button>
+
+        <button type="button" class="btn-eliminar">
+            Eliminar
+        </button>
+    </td>
+</tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         MODAL PARA NUEVO ALUMNO
+    =============================== -->
+
+    <div class="modal" id="modal-alumno">
+
+        <div class="modal-contenido">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="etiqueta">REGISTRO</span>
+                    <h2>Nuevo alumno</h2>
+                </div>
+
+                <button id="cerrar-modal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="form-alumno">
+
+                <div class="form-grid">
+
+                    <div class="campo">
+
+                        <label for="codigo">
+                            Código del alumno
+                        </label>
+
+                        <input
+                            type="text"
+                            id="codigo"
+                            placeholder="Ej. A001"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="dni">
+                            DNI
+                        </label>
+
+                        <input
+                            type="text"
+                            id="dni"
+                            placeholder="Ingrese DNI"
+                            maxlength="8"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="apellidos">
+                            Apellidos
+                        </label>
+
+                        <input
+                            type="text"
+                            id="apellidos"
+                            placeholder="Apellidos"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="nombres">
+                            Nombres
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombres"
+                            placeholder="Nombres"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="grado">
+                            Grado
+                        </label>
+
+                        <select id="grado" required>
+
+                            <option value="">
+                                Seleccionar grado
+                            </option>
+
+                            <option value="1°">
+                                1°
+                            </option>
+
+                            <option value="2°">
+                                2°
+                            </option>
+
+                            <option value="3°">
+                                3°
+                            </option>
+
+                            <option value="4°">
+                                4°
+                            </option>
+
+                            <option value="5°">
+                                5°
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="seccion">
+                            Sección
+                        </label>
+
+                        <select id="seccion" required>
+
+                            <option value="">
+                                Seleccionar sección
+                            </option>
+
+                            <option value="A">
+                                A
+                            </option>
+
+                            <option value="B">
+                                B
+                            </option>
+
+                            <option value="C">
+                                C
+                            </option>
+
+                            <option value="D">
+                                D
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-acciones">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        id="cancelar-alumno"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar alumno
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>

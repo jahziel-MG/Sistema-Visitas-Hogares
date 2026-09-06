@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registrar Visita | Sistema de Visitas a Hogares</title>
+
+    <link rel="stylesheet"
+          href="../css/estilos.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         ENCABEZADO
+    =========================================== -->
+
+    <header>
+
+        <div class="logo">
+            Sistema de Visitas a Hogares
+        </div>
+
+
+        <nav>
+
+            <a href="../index.html">
+                Inicio
+            </a>
+
+            <a href="alumnos.html">
+                Alumnos
+            </a>
+
+            <a href="profesores.html">
+                Profesores
+            </a>
+
+            <a href="visitas.html">
+                Visitas
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
+
+    <main>
+
+
+        <!-- ==========================================
+             ENCABEZADO DE LA PÁGINA
+        =========================================== -->
+
+        <section class="pagina-header">
+
+            <div>
+
+                <span class="etiqueta">
+                    SEGUIMIENTO
+                </span>
+
+                <h1>
+                    Registrar visita
+                </h1>
+
+                <p>
+                    Registra una nueva visita al hogar de un alumno.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             FORMULARIO
+        =========================================== -->
+
+        <section class="bienvenida">
+
+            <form id="form-registro-visita">
+
+
+                <!-- ALUMNO -->
+
+                <div class="campo">
+
+                    <label for="alumno-registro">
+                        Alumno
+                    </label>
+
+                    <input
+                        type="text"
+                        id="alumno-registro"
+                        placeholder="Nombre del alumno"
+                        required
+                    >
+
+                </div>
+
+
+                <br>
+
+
+                <!-- PROFESOR -->
+
+                <div class="campo">
+
+                    <label for="profesor-registro">
+                        Profesor
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profesor-registro"
+                        placeholder="Nombre del profesor"
+                        required
+                    >
+
+                </div>
+
+
+                <br>
+
+
+                <!-- FECHA -->
+
+                <div class="campo">
+
+                    <label for="fecha-registro">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha-registro"
+                        required
+                    >
+
+                </div>
+
+
+                <br>
+
+
+                <!-- MOTIVO -->
+
+                <div class="campo">
+
+                    <label for="motivo-registro">
+                        Motivo de la visita
+                    </label>
+
+                    <select
+                        id="motivo-registro"
+                        required
+                    >
+
+                        <option value="">
+                            Seleccione un motivo
+                        </option>
+
+                        <option value="Seguimiento académico">
+                            Seguimiento académico
+                        </option>
+
+                        <option value="Problemas de asistencia">
+                            Problemas de asistencia
+                        </option>
+
+                        <option value="Problemas familiares">
+                            Problemas familiares
+                        </option>
+
+                        <option value="Orientación">
+                            Orientación
+                        </option>
+
+                        <option value="Otro">
+                            Otro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <br>
+
+
+                <!-- ESTADO -->
+
+                <div class="campo">
+
+                    <label for="estado-registro">
+                        Estado
+                    </label>
+
+                    <select
+                        id="estado-registro"
+                        required
+                    >
+
+                        <option value="Pendiente">
+                            Pendiente
+                        </option>
+
+                        <option value="Realizada">
+                            Realizada
+                        </option>
+
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BOTONES -->
+
+                <div class="modal-acciones">
+
+                    <a
+                        href="visitas.html"
+                        class="btn-cancelar">
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal">
+                        Registrar visita
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         PIE DE PÁGINA
+    =========================================== -->
+
+    <footer>
+
+        Sistema de Visitas a Hogares
+
+    </footer>
+
+
+</body>
+
+</html>

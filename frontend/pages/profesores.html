@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profesores | Sistema de Visitas</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         ENCABEZADO
+    =========================================== -->
+
+    <header>
+
+        <div class="logo">
+            Sistema de Visitas a Hogares
+        </div>
+
+
+        <nav>
+
+            <a href="../index.html">
+                Inicio
+            </a>
+
+            <a href="alumnos.html">
+                Alumnos
+            </a>
+
+            <a href="profesores.html">
+                Profesores
+            </a>
+
+            <a href="visitas.html">
+                Visitas
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
+
+    <main>
+
+        <section class="pagina-header">
+
+            <div>
+
+                <span class="etiqueta">
+                    GESTIÓN ACADÉMICA
+                </span>
+
+                <h1>
+                    Profesores
+                </h1>
+
+                <p>
+                    Registra y administra la información
+                    de los profesores del sistema.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-principal"
+                id="btn-nuevo-profesor">
+
+                + Nuevo profesor
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             BUSCADOR
+        =========================================== -->
+
+        <section class="busqueda">
+
+            <input
+                type="text"
+                id="buscar-profesor"
+                placeholder="Buscar por nombre, apellido o código..."
+            >
+
+        </section>
+
+
+
+        <!-- ==========================================
+             TABLA DE PROFESORES
+        =========================================== -->
+
+        <section class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Código
+                        </th>
+
+                        <th>
+                            DNI
+                        </th>
+
+                        <th>
+                            Apellidos
+                        </th>
+
+                        <th>
+                            Nombres
+                        </th>
+
+                        <th>
+                            Curso
+                        </th>
+
+                        <th>
+                            Sección
+                        </th>
+
+                        <th>
+                            Acciones
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tabla-profesores">
+
+                    <!-- Profesor de ejemplo -->
+
+                    <tr>
+
+                        <td>
+                            P001
+                        </td>
+
+                        <td>
+                            12345678
+                        </td>
+
+                        <td>
+                            Pérez García
+                        </td>
+
+                        <td>
+                            Carlos
+                        </td>
+
+                        <td>
+                            Matemática
+                        </td>
+
+                        <td>
+                            A
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="btn-editar-profesor">
+
+                                Editar
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-eliminar">
+
+                                Eliminar
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==========================================
+         MODAL NUEVO PROFESOR
+    =========================================== -->
+
+    <div
+        class="modal"
+        id="modal-profesor">
+
+
+        <div class="modal-contenido">
+
+
+            <!-- CABECERA DEL MODAL -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="etiqueta">
+                        REGISTRO
+                    </span>
+
+                    <h2>
+                        Nuevo profesor
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="cerrar-modal-profesor">
+
+                    &times;
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 FORMULARIO
+            =========================================== -->
+
+            <form id="form-profesor">
+
+
+                <div class="form-grid">
+
+
+                    <!-- CÓDIGO -->
+
+                    <div class="campo">
+
+                        <label for="codigo-profesor">
+                            Código del profesor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="codigo-profesor"
+                            placeholder="Ej. P001"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- DNI -->
+
+                    <div class="campo">
+
+                        <label for="dni-profesor">
+                            DNI
+                        </label>
+
+                        <input
+                            type="text"
+                            id="dni-profesor"
+                            placeholder="Ingrese DNI"
+                            maxlength="8"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- APELLIDOS -->
+
+                    <div class="campo">
+
+                        <label for="apellidos-profesor">
+                            Apellidos
+                        </label>
+
+                        <input
+                            type="text"
+                            id="apellidos-profesor"
+                            placeholder="Apellidos"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- NOMBRES -->
+
+                    <div class="campo">
+
+                        <label for="nombres-profesor">
+                            Nombres
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombres-profesor"
+                            placeholder="Nombres"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- CURSO -->
+
+                    <div class="campo">
+
+                        <label for="curso-profesor">
+                            Curso que dicta
+                        </label>
+
+                        <select
+                            id="curso-profesor"
+                            required>
+
+                            <option value="">
+                                Seleccionar curso
+                            </option>
+
+                            <option value="Matemática">
+                                Matemática
+                            </option>
+
+                            <option value="Comunicación">
+                                Comunicación
+                            </option>
+
+                            <option value="Ciencia y Tecnología">
+                                Ciencia y Tecnología
+                            </option>
+
+                            <option value="Inglés">
+                                Inglés
+                            </option>
+
+                            <option value="Historia">
+                                Historia
+                            </option>
+
+                            <option value="Educación Física">
+                                Educación Física
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- SECCIÓN -->
+
+                    <div class="campo">
+
+                        <label for="seccion-profesor">
+                            Sección
+                        </label>
+
+                        <select
+                            id="seccion-profesor"
+                            required>
+
+                            <option value="">
+                                Seleccionar sección
+                            </option>
+
+                            <option value="A">
+                                A
+                            </option>
+
+                            <option value="B">
+                                B
+                            </option>
+
+                            <option value="C">
+                                C
+                            </option>
+
+                            <option value="D">
+                                D
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     BOTONES
+                =========================================== -->
+
+                <div class="modal-acciones">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        id="cancelar-profesor">
+
+                        Cancelar
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal">
+
+                        Guardar profesor
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../js/profesores.js"></script>
+
+</body>
+
+</html>

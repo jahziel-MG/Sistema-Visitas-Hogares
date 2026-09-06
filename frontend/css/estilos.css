@@ -1,0 +1,676 @@
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    color: #1f2937;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+header {
+    background-color: #123b6d;
+    color: white;
+    padding: 18px 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo h1 {
+    font-size: 22px;
+}
+
+
+/* =========================================
+   MENÚ
+========================================= */
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+
+/* =========================================
+   BIENVENIDA
+========================================= */
+
+.bienvenida {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 30px;
+}
+
+.bienvenida h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+    color: #123b6d;
+}
+
+.bienvenida p {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.btn-principal {
+    display: inline-block;
+
+    background-color: #2563eb;
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 22px;
+    border-radius: 7px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-principal:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   TARJETAS DE RESUMEN
+========================================= */
+
+.resumen {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    margin-bottom: 40px;
+}
+
+.tarjeta {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    border-left: 5px solid #2563eb;
+}
+
+.tarjeta h2 {
+    font-size: 17px;
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+.numero {
+    font-size: 35px;
+    font-weight: bold;
+    color: #123b6d;
+
+    margin-bottom: 12px;
+}
+
+.tarjeta a {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.tarjeta a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   ACCESOS RÁPIDOS
+========================================= */
+
+.accesos {
+    margin-bottom: 40px;
+}
+
+.accesos h2 {
+    margin-bottom: 20px;
+    color: #123b6d;
+}
+
+.acciones {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.accion {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+    color: #1f2937;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.accion:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.accion span {
+    display: block;
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+}
+
+.accion strong {
+    display: block;
+
+    color: #123b6d;
+
+    margin-bottom: 8px;
+}
+
+.accion p {
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PIE DE PÁGINA
+========================================= */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    background-color: #123b6d;
+
+    color: white;
+
+    margin-top: 50px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   DISEÑO RESPONSIVO
+========================================= */
+
+@media (max-width: 900px) {
+
+    .acciones {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resumen {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    main {
+        width: 94%;
+    }
+
+    .acciones {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .bienvenida {
+        padding: 25px;
+    }
+
+    .bienvenida h1 {
+        font-size: 24px;
+    }
+}
+/* =========================================
+   PÁGINA DE GESTIÓN
+========================================= */
+
+.pagina-header {
+    background-color: white;
+    padding: 30px 35px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pagina-header h1 {
+    color: #123b6d;
+    font-size: 30px;
+    margin: 8px 0;
+}
+
+.pagina-header p {
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   ETIQUETA
+========================================= */
+
+.etiqueta {
+    display: inline-block;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    color: #2563eb;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   BUSCADOR
+========================================= */
+
+.busqueda {
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+#buscar-alumno {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+#buscar-alumno:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================
+   TABLA
+========================================= */
+
+.tabla-contenedor {
+    background-color: white;
+
+    border-radius: 12px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+thead {
+    background-color: #123b6d;
+
+    color: white;
+}
+
+th {
+    padding: 15px;
+
+    text-align: left;
+
+    font-size: 14px;
+}
+
+td {
+    padding: 14px 15px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+
+/* =========================================
+   BOTONES DE LA TABLA
+========================================= */
+
+.btn-editar,
+.btn-eliminar,
+.btn-editar-profesor,
+.btn-eliminar-profesor {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+/* BOTÓN EDITAR */
+.btn-editar,
+.btn-editar-profesor {
+    background-color: #e0ecff;
+    color: #1d4ed8;
+}
+
+/* BOTÓN ELIMINAR */
+.btn-eliminar,
+.btn-eliminar-profesor {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* EFECTO AL PASAR EL MOUSE */
+.btn-editar:hover,
+.btn-eliminar:hover,
+.btn-editar-profesor:hover,
+.btn-eliminar-profesor:hover {
+    opacity: 0.8;
+}
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background-color: white;
+
+    width: 100%;
+    max-width: 700px;
+
+    border-radius: 12px;
+
+    padding: 30px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    color: #123b6d;
+
+    margin-top: 6px;
+}
+
+.modal-header button {
+    background: none;
+
+    border: none;
+
+    font-size: 28px;
+
+    color: #6b7280;
+
+    cursor: pointer;
+}
+
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.campo label {
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #374151;
+}
+
+.campo input,
+.campo select {
+    padding: 11px 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background-color: white;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.modal-acciones {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 30px;
+}
+
+.btn-cancelar {
+    background-color: #e5e7eb;
+
+    color: #374151;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.btn-cancelar:hover {
+    background-color: #d1d5db;
+}
+
+
+/* =========================================
+   RESPONSIVE - ALUMNOS
+========================================= */
+
+@media (max-width: 700px) {
+
+    .pagina-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-contenido {
+        padding: 20px;
+    }
+}
+
+.modal.activo {
+    display: flex;
+}
+
+/* =========================================
+   BOTONES DE VISITAS
+========================================= */
+
+.btn-editar-visita,
+.btn-eliminar-visita {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.btn-editar-visita {
+    background-color: #e0ecff;
+    color: #1d4ed8;
+}
+
+.btn-eliminar-visita {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-editar-visita:hover,
+.btn-eliminar-visita:hover {
+    opacity: 0.8;
+}

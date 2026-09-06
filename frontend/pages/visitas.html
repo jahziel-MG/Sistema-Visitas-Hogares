@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visitas | Sistema de Visitas a Hogares</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ENCABEZADO
+    ========================================== -->
+
+    <header>
+
+        <div class="logo">
+            Sistema de Visitas a Hogares
+        </div>
+
+
+        <nav>
+
+            <a href="../index.html">
+                Inicio
+            </a>
+
+            <a href="alumnos.html">
+                Alumnos
+            </a>
+
+            <a href="profesores.html">
+                Profesores
+            </a>
+
+            <a href="visitas.html">
+                Visitas
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
+
+    <main>
+
+
+        <!-- CABECERA DE LA PÁGINA -->
+
+        <section class="pagina-header">
+
+            <div>
+
+                <span class="etiqueta">
+                    SEGUIMIENTO
+                </span>
+
+                <h1>
+                    Visitas a hogares
+                </h1>
+
+                <p>
+                    Registra y administra las visitas realizadas
+                    a los hogares de los alumnos.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-principal"
+                id="btn-nueva-visita">
+
+                + Nueva visita
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================================
+             BUSCADOR
+        ========================================== -->
+
+        <section class="busqueda">
+
+            <input
+                type="text"
+                id="buscar-visita"
+                placeholder="Buscar por alumno, profesor o estado..."
+            >
+
+        </section>
+
+
+
+        <!-- =========================================
+             TABLA DE VISITAS
+        ========================================== -->
+
+        <section class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Alumno</th>
+
+                        <th>Profesor</th>
+
+                        <th>Fecha</th>
+
+                        <th>Motivo</th>
+
+                        <th>Estado</th>
+
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tabla-visitas">
+
+
+                    <!-- VISITA DE EJEMPLO -->
+
+                    <tr>
+
+                        <td>
+                            Juan Pérez García
+                        </td>
+
+                        <td>
+                            Carlos López
+                        </td>
+
+                        <td>
+                            05/09/2026
+                        </td>
+
+                        <td>
+                            Seguimiento académico
+                        </td>
+
+                        <td>
+                            Pendiente
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="btn-editar-visita">
+
+                                Editar
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-eliminar-visita">
+
+                                Eliminar
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         MODAL NUEVA VISITA
+    ========================================== -->
+
+    <div
+        class="modal"
+        id="modal-visita">
+
+
+        <div class="modal-contenido">
+
+
+            <!-- CABECERA DEL MODAL -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="etiqueta">
+                        REGISTRO
+                    </span>
+
+                    <h2>
+                        Nueva visita
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="cerrar-modal-visita">
+
+                    &times;
+
+                </button>
+
+            </div>
+
+
+
+            <!-- FORMULARIO -->
+
+            <form id="form-visita">
+
+
+                <div class="form-grid">
+
+
+                    <!-- ALUMNO -->
+
+                    <div class="campo">
+
+                        <label for="alumno-visita">
+                            Alumno
+                        </label>
+
+                        <input
+                            type="text"
+                            id="alumno-visita"
+                            placeholder="Nombre del alumno"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- PROFESOR -->
+
+                    <div class="campo">
+
+                        <label for="profesor-visita">
+                            Profesor responsable
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profesor-visita"
+                            placeholder="Nombre del profesor"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- FECHA -->
+
+                    <div class="campo">
+
+                        <label for="fecha-visita">
+                            Fecha de visita
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fecha-visita"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- MOTIVO -->
+
+                    <div class="campo">
+
+                        <label for="motivo-visita">
+                            Motivo
+                        </label>
+
+                        <select
+                            id="motivo-visita"
+                            required>
+
+                            <option value="">
+                                Seleccionar motivo
+                            </option>
+
+                            <option value="Seguimiento académico">
+                                Seguimiento académico
+                            </option>
+
+                            <option value="Inasistencia">
+                                Inasistencia
+                            </option>
+
+                            <option value="Problemas familiares">
+                                Problemas familiares
+                            </option>
+
+                            <option value="Rendimiento académico">
+                                Rendimiento académico
+                            </option>
+
+                            <option value="Otro">
+                                Otro
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- ESTADO -->
+
+                    <div class="campo">
+
+                        <label for="estado-visita">
+                            Estado
+                        </label>
+
+                        <select
+                            id="estado-visita"
+                            required>
+
+                            <option value="">
+                                Seleccionar estado
+                            </option>
+
+                            <option value="Pendiente">
+                                Pendiente
+                            </option>
+
+                            <option value="Programada">
+                                Programada
+                            </option>
+
+                            <option value="Realizada">
+                                Realizada
+                            </option>
+
+                            <option value="Cancelada">
+                                Cancelada
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- OBSERVACIONES -->
+
+                    <div class="campo">
+
+                        <label for="observaciones-visita">
+                            Observaciones
+                        </label>
+
+                        <input
+                            type="text"
+                            id="observaciones-visita"
+                            placeholder="Observaciones de la visita"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="modal-acciones">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        id="cancelar-visita">
+
+                        Cancelar
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal">
+
+                        Guardar visita
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../js/visitas.js"></script>
+
+
+</body>
+
+</html>
