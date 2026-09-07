@@ -32,6 +32,58 @@ let filaProfesorEditando = null;
 
 
 // ==========================================
+// CARGAR PROFESORES GUARDADOS
+// ==========================================
+
+function cargarProfesores() {
+
+    const profesores =
+        JSON.parse(localStorage.getItem("profesores")) || [];
+
+    profesores.forEach(function (profesor) {
+
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+
+            <td>${profesor.codigo}</td>
+
+            <td>${profesor.dni}</td>
+
+            <td>${profesor.apellidos}</td>
+
+            <td>${profesor.nombres}</td>
+
+            <td>${profesor.curso}</td>
+
+            <td>${profesor.seccion}</td>
+
+            <td>
+
+                <button
+                    type="button"
+                    class="btn-editar-profesor">
+                    Editar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-eliminar-profesor">
+                    Eliminar
+                </button>
+
+            </td>
+
+        `;
+
+        tablaProfesores.appendChild(fila);
+
+    });
+
+}
+
+
+// ==========================================
 // ABRIR MODAL - NUEVO PROFESOR
 // ==========================================
 
@@ -127,44 +179,32 @@ if (formularioProfesor) {
 
 
         // ==========================================
-        // CONTENIDO DE LA FILA
+        // CREAR OBJETO PROFESOR
         // ==========================================
 
-        const datosFila = `
+        const nuevoProfesor = {
 
-            <td>${codigo}</td>
+            codigo: codigo,
 
-            <td>${dni}</td>
+            dni: dni,
 
-            <td>${apellidos}</td>
+            apellidos: apellidos,
 
-            <td>${nombres}</td>
+            nombres: nombres,
 
-            <td>${curso}</td>
+            curso: curso,
 
-            <td>${seccion}</td>
+            seccion: seccion
 
-            <td>
+        };
 
-                <button
-                    type="button"
-                    class="btn-editar-profesor">
 
-                    Editar
+        // ==========================================
+        // OBTENER PROFESORES GUARDADOS
+        // ==========================================
 
-                </button>
-
-                <button
-                    type="button"
-                    class="btn-eliminar-profesor">
-
-                    Eliminar
-
-                </button>
-
-            </td>
-
-        `;
+        let profesores =
+            JSON.parse(localStorage.getItem("profesores")) || [];
 
 
         // ==========================================
@@ -173,13 +213,64 @@ if (formularioProfesor) {
 
         if (filaProfesorEditando) {
 
-            filaProfesorEditando.innerHTML = datosFila;
+            const codigoAnterior =
+                filaProfesorEditando
+                    .querySelectorAll("td")[0]
+                    .textContent
+                    .trim();
+
+
+            const indice =
+                profesores.findIndex(function (profesor) {
+
+                    return profesor.codigo === codigoAnterior;
+
+                });
+
+
+            if (indice !== -1) {
+
+                profesores[indice] = nuevoProfesor;
+
+            }
+
+
+            filaProfesorEditando.innerHTML = `
+
+                <td>${codigo}</td>
+
+                <td>${dni}</td>
+
+                <td>${apellidos}</td>
+
+                <td>${nombres}</td>
+
+                <td>${curso}</td>
+
+                <td>${seccion}</td>
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="btn-editar-profesor">
+                        Editar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-eliminar-profesor">
+                        Eliminar
+                    </button>
+
+                </td>
+
+            `;
+
 
             alert("Profesor actualizado correctamente.");
 
         }
-
-
 
 
         // ==========================================
@@ -188,15 +279,58 @@ if (formularioProfesor) {
 
         else {
 
-            const fila = document.createElement("tr");
+            profesores.push(nuevoProfesor);
 
-            fila.innerHTML = datosFila;
+            const fila =
+                document.createElement("tr");
+
+            fila.innerHTML = `
+
+                <td>${codigo}</td>
+
+                <td>${dni}</td>
+
+                <td>${apellidos}</td>
+
+                <td>${nombres}</td>
+
+                <td>${curso}</td>
+
+                <td>${seccion}</td>
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="btn-editar-profesor">
+                        Editar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-eliminar-profesor">
+                        Eliminar
+                    </button>
+
+                </td>
+
+            `;
 
             tablaProfesores.appendChild(fila);
 
             alert("Profesor registrado correctamente.");
 
         }
+
+
+        // ==========================================
+        // GUARDAR EN LOCALSTORAGE
+        // ==========================================
+
+        localStorage.setItem(
+            "profesores",
+            JSON.stringify(profesores)
+        );
 
 
         // ==========================================
@@ -235,6 +369,12 @@ document.addEventListener("click", function (evento) {
             evento.target.closest("tr");
 
 
+        const codigo =
+            fila.querySelectorAll("td")[0]
+                .textContent
+                .trim();
+
+
         const confirmar = confirm(
             "¿Está seguro de eliminar este profesor?"
         );
@@ -243,6 +383,25 @@ document.addEventListener("click", function (evento) {
         if (confirmar) {
 
             fila.remove();
+
+
+            let profesores =
+                JSON.parse(localStorage.getItem("profesores")) || [];
+
+
+            profesores =
+                profesores.filter(function (profesor) {
+
+                    return profesor.codigo !== codigo;
+
+                });
+
+
+            localStorage.setItem(
+                "profesores",
+                JSON.stringify(profesores)
+            );
+
 
             alert("Profesor eliminado correctamente.");
 
@@ -269,7 +428,6 @@ document.addEventListener("click", function (evento) {
 
 
         // Guardar la fila que estamos editando
-
         filaProfesorEditando = fila;
 
 
@@ -297,7 +455,6 @@ document.addEventListener("click", function (evento) {
 
 
         // Abrir modal
-
         modalProfesor.classList.add("activo");
 
     }
@@ -313,19 +470,13 @@ if (buscarProfesor) {
 
     buscarProfesor.addEventListener("input", function () {
 
-        // Texto escrito en el buscador
-
         const texto =
             buscarProfesor.value.toLowerCase().trim();
 
 
-        // Obtener todas las filas
-
         const filas =
             tablaProfesores.querySelectorAll("tr");
 
-
-        // Revisar cada profesor
 
         filas.forEach(function (fila) {
 
@@ -348,3 +499,10 @@ if (buscarProfesor) {
     });
 
 }
+
+
+// ==========================================
+// CARGAR AL ABRIR LA PÁGINA
+// ==========================================
+
+cargarProfesores();

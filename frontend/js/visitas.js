@@ -32,6 +32,96 @@ let filaVisitaEditando = null;
 
 
 // ==========================================
+// CARGAR VISITAS GUARDADAS
+// ==========================================
+
+function cargarVisitas() {
+
+    const visitas =
+        JSON.parse(localStorage.getItem("visitas")) || [];
+
+
+    // Limpiar la tabla
+
+    tablaVisitas.innerHTML = "";
+
+
+    // Crear cada visita
+
+    visitas.forEach(function (visita) {
+
+        crearFilaVisita(visita);
+
+    });
+
+}
+
+
+// ==========================================
+// CREAR FILA DE VISITA
+// ==========================================
+
+function crearFilaVisita(visita) {
+
+    const fila =
+        document.createElement("tr");
+
+
+    // Convertir fecha YYYY-MM-DD
+    // a DD/MM/YYYY
+
+    let fechaMostrar = visita.fecha;
+
+    if (visita.fecha && visita.fecha.includes("-")) {
+
+        const partes =
+            visita.fecha.split("-");
+
+        fechaMostrar =
+            partes[2] + "/" +
+            partes[1] + "/" +
+            partes[0];
+
+    }
+
+
+    fila.innerHTML = `
+
+        <td>${visita.alumno}</td>
+
+        <td>${visita.profesor}</td>
+
+        <td>${fechaMostrar}</td>
+
+        <td>${visita.motivo}</td>
+
+        <td>${visita.estado}</td>
+
+        <td>
+
+            <button
+                type="button"
+                class="btn-editar-visita">
+                Editar
+            </button>
+
+            <button
+                type="button"
+                class="btn-eliminar-visita">
+                Eliminar
+            </button>
+
+        </td>
+
+    `;
+
+
+    tablaVisitas.appendChild(fila);
+
+}
+
+
+// ==========================================
 // ABRIR MODAL - NUEVA VISITA
 // ==========================================
 
@@ -39,11 +129,19 @@ if (btnNuevaVisita) {
 
     btnNuevaVisita.addEventListener("click", function () {
 
-        formularioVisita.reset();
+        if (formularioVisita) {
+
+            formularioVisita.reset();
+
+        }
 
         filaVisitaEditando = null;
 
-        modalVisita.classList.add("activo");
+        if (modalVisita) {
+
+            modalVisita.classList.add("activo");
+
+        }
 
     });
 
@@ -96,7 +194,6 @@ if (formularioVisita) {
 
     formularioVisita.addEventListener("submit", function (evento) {
 
-        // Evitar recargar la página
         evento.preventDefault();
 
 
@@ -121,67 +218,53 @@ if (formularioVisita) {
 
 
         // ==========================================
-        // CONVERTIR FECHA
+        // OBTENER VISITAS
         // ==========================================
 
-        let fechaMostrar = fecha;
-
-        if (fecha) {
-
-            const partes = fecha.split("-");
-
-            fechaMostrar =
-                partes[2] + "/" +
-                partes[1] + "/" +
-                partes[0];
-
-        }
+        let visitas =
+            JSON.parse(localStorage.getItem("visitas")) || [];
 
 
         // ==========================================
-        // CREAR CONTENIDO DE LA FILA
-        // ==========================================
-
-        const datosFila = `
-
-            <td>${alumno}</td>
-
-            <td>${profesor}</td>
-
-            <td>${fechaMostrar}</td>
-
-            <td>${motivo}</td>
-
-            <td>${estado}</td>
-
-            <td>
-
-                <button
-                    type="button"
-                    class="btn-editar-visita">
-                    Editar
-                </button>
-
-                <button
-                    type="button"
-                    class="btn-eliminar-visita">
-                    Eliminar
-                </button>
-
-            </td>
-
-        `;
-
-
-        // ==========================================
-        // EDITAR VISITA
+        // SI ESTAMOS EDITANDO
         // ==========================================
 
         if (filaVisitaEditando) {
 
-            filaVisitaEditando.innerHTML = datosFila;
+            const filas =
+                Array.from(tablaVisitas.querySelectorAll("tr"));
+
+            const posicion =
+                filas.indexOf(filaVisitaEditando);
+
+
+            if (posicion !== -1) {
+
+                visitas[posicion] = {
+
+                    alumno: alumno,
+
+                    profesor: profesor,
+
+                    fecha: fecha,
+
+                    motivo: motivo,
+
+                    estado: estado
+
+                };
+
+            }
+
+
+            localStorage.setItem(
+                "visitas",
+                JSON.stringify(visitas)
+            );
+
 
             alert("Visita actualizada correctamente.");
+
 
         }
 
@@ -192,12 +275,29 @@ if (formularioVisita) {
 
         else {
 
-            const fila =
-                document.createElement("tr");
+            const nuevaVisita = {
 
-            fila.innerHTML = datosFila;
+                alumno: alumno,
 
-            tablaVisitas.appendChild(fila);
+                profesor: profesor,
+
+                fecha: fecha,
+
+                motivo: motivo,
+
+                estado: estado
+
+            };
+
+
+            visitas.push(nuevaVisita);
+
+
+            localStorage.setItem(
+                "visitas",
+                JSON.stringify(visitas)
+            );
+
 
             alert("Visita registrada correctamente.");
 
@@ -205,7 +305,14 @@ if (formularioVisita) {
 
 
         // ==========================================
-        // CERRAR Y LIMPIAR
+        // ACTUALIZAR TABLA
+        // ==========================================
+
+        cargarVisitas();
+
+
+        // ==========================================
+        // CERRAR MODAL
         // ==========================================
 
         modalVisita.classList.remove("activo");
@@ -227,7 +334,7 @@ document.addEventListener("click", function (evento) {
 
 
     // ==========================================
-    // ELIMINAR VISITA
+    // ELIMINAR
     // ==========================================
 
     if (
@@ -239,14 +346,46 @@ document.addEventListener("click", function (evento) {
         const fila =
             evento.target.closest("tr");
 
+
+        const filas =
+            Array.from(
+                tablaVisitas.querySelectorAll("tr")
+            );
+
+
+        const posicion =
+            filas.indexOf(fila);
+
+
         const confirmar =
-            confirm("¿Está seguro de eliminar esta visita?");
+            confirm(
+                "¿Está seguro de eliminar esta visita?"
+            );
+
 
         if (confirmar) {
 
-            fila.remove();
+            let visitas =
+                JSON.parse(
+                    localStorage.getItem("visitas")
+                ) || [];
 
-            alert("Visita eliminada correctamente.");
+
+            visitas.splice(posicion, 1);
+
+
+            localStorage.setItem(
+                "visitas",
+                JSON.stringify(visitas)
+            );
+
+
+            cargarVisitas();
+
+
+            alert(
+                "Visita eliminada correctamente."
+            );
 
         }
 
@@ -254,7 +393,7 @@ document.addEventListener("click", function (evento) {
 
 
     // ==========================================
-    // EDITAR VISITA
+    // EDITAR
     // ==========================================
 
     if (
@@ -266,68 +405,84 @@ document.addEventListener("click", function (evento) {
         const fila =
             evento.target.closest("tr");
 
+
         const celdas =
             fila.querySelectorAll("td");
 
 
-        // Guardar fila que estamos editando
         filaVisitaEditando = fila;
 
 
         // ==========================================
-        // CARGAR ALUMNO
+        // ALUMNO
         // ==========================================
 
-        document.getElementById("alumno-visita").value =
+        document.getElementById(
+            "alumno-visita"
+        ).value =
             celdas[0].textContent.trim();
 
 
         // ==========================================
-        // CARGAR PROFESOR
+        // PROFESOR
         // ==========================================
 
-        document.getElementById("profesor-visita").value =
+        document.getElementById(
+            "profesor-visita"
+        ).value =
             celdas[1].textContent.trim();
 
 
         // ==========================================
-        // CARGAR FECHA
+        // FECHA
         // ==========================================
 
         const fechaTexto =
             celdas[2].textContent.trim();
+
 
         if (fechaTexto.includes("/")) {
 
             const partesFecha =
                 fechaTexto.split("/");
 
-            document.getElementById("fecha-visita").value =
+
+            document.getElementById(
+                "fecha-visita"
+            ).value =
+
                 partesFecha[2] + "-" +
                 partesFecha[1] + "-" +
                 partesFecha[0];
 
-        } else {
+        }
+        else {
 
-            document.getElementById("fecha-visita").value =
+            document.getElementById(
+                "fecha-visita"
+            ).value =
                 fechaTexto;
 
         }
 
 
         // ==========================================
-        // CARGAR MOTIVO
+        // MOTIVO
         // ==========================================
 
-        document.getElementById("motivo-visita").value =
+        document.getElementById(
+            "motivo-visita"
+        ).value =
             celdas[3].textContent.trim();
 
 
         // ==========================================
-        // CARGAR ESTADO
+        // ESTADO
         // ==========================================
 
-        document.getElementById("estado-visita").value =
+        document.getElementById(
+            "estado-visita"
+        ).value =
             celdas[4].textContent.trim();
 
 
@@ -343,39 +498,55 @@ document.addEventListener("click", function (evento) {
 
 
 // ==========================================
-// BUSCADOR DE VISITAS
+// BUSCADOR
 // ==========================================
 
 if (buscarVisita) {
 
-    buscarVisita.addEventListener("input", function () {
+    buscarVisita.addEventListener(
+        "input",
+        function () {
 
-        const texto =
-            buscarVisita.value.toLowerCase().trim();
-
-
-        const filas =
-            tablaVisitas.querySelectorAll("tr");
-
-
-        filas.forEach(function (fila) {
-
-            const contenido =
-                fila.textContent.toLowerCase();
+            const texto =
+                buscarVisita.value
+                    .toLowerCase()
+                    .trim();
 
 
-            if (contenido.includes(texto)) {
+            const filas =
+                tablaVisitas.querySelectorAll("tr");
 
-                fila.style.display = "";
 
-            } else {
+            filas.forEach(function (fila) {
 
-                fila.style.display = "none";
+                const contenido =
+                    fila.textContent
+                        .toLowerCase();
 
-            }
 
-        });
+                if (
+                    contenido.includes(texto)
+                ) {
 
-    });
+                    fila.style.display = "";
+
+                }
+                else {
+
+                    fila.style.display = "none";
+
+                }
+
+            });
+
+        }
+    );
 
 }
+
+
+// ==========================================
+// CARGAR AL ABRIR LA PÁGINA
+// ==========================================
+
+cargarVisitas();
