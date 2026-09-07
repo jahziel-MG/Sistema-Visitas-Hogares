@@ -1,4 +1,12 @@
 // ==========================================
+// URL DE LA API
+// ==========================================
+
+const API_URL =
+    "/Sistema-Visitas-Hogares/backend/api/estudiantes.php";
+
+
+// ==========================================
 // ELEMENTOS DEL HTML
 // ==========================================
 
@@ -35,36 +43,69 @@ let filaAlumnoEditando = null;
 
 
 // ==========================================
-// CARGAR ALUMNOS GUARDADOS
+// ACTUALIZAR CONTADOR
 // ==========================================
 
-function cargarAlumnos() {
-
-    const alumnos =
-        JSON.parse(localStorage.getItem("alumnos")) || [];
-
-    tablaAlumnos.innerHTML = "";
-
-    alumnos.forEach(function (alumno) {
-
-        crearFilaAlumno(alumno);
-
-    });
-
-    actualizarContador();
-}
 function actualizarContador() {
 
-    const alumnos =
-        JSON.parse(localStorage.getItem("alumnos")) || [];
-
-    if (cantidadAlumnos) {
-
-        cantidadAlumnos.textContent =
-            alumnos.length;
-
+    if (!cantidadAlumnos) {
+        return;
     }
 
+    const filas =
+        tablaAlumnos.querySelectorAll("tr");
+
+    cantidadAlumnos.textContent = filas.length;
+}
+
+
+// ==========================================
+// CARGAR ALUMNOS DESDE LA API
+// ==========================================
+
+async function cargarAlumnos() {
+
+    try {
+
+        const respuesta = await fetch(API_URL);
+
+        if (!respuesta.ok) {
+            throw new Error(
+                "Error HTTP: " + respuesta.status
+            );
+        }
+
+        const resultado = await respuesta.json();
+
+        if (!resultado.success) {
+
+            throw new Error(
+                resultado.message ||
+                "No se pudieron cargar los alumnos."
+            );
+        }
+
+        tablaAlumnos.innerHTML = "";
+
+        resultado.data.forEach(function (alumno) {
+
+            crearFilaAlumno(alumno);
+
+        });
+
+        actualizarContador();
+
+    } catch (error) {
+
+        console.error(
+            "Error al cargar alumnos:",
+            error
+        );
+
+        alert(
+            "No se pudieron cargar los alumnos."
+        );
+    }
 }
 
 
@@ -74,19 +115,30 @@ function actualizarContador() {
 
 function crearFilaAlumno(alumno) {
 
-    const fila = document.createElement("tr");
+    const fila =
+        document.createElement("tr");
+
+    // Guardamos el ID real de la base de datos
+    fila.dataset.id =
+        alumno.id_estudiante;
+
+    // Creamos un código visual
+    const codigo =
+        "ALU-" +
+        String(alumno.id_estudiante)
+            .padStart(3, "0");
 
     fila.innerHTML = `
 
         <td>
             <span class="codigo-alumno">
-                ${alumno.codigo}
+                ${codigo}
             </span>
         </td>
 
         <td>
             <span class="dato-dni">
-                ${alumno.dni}
+                ${alumno.dni ?? ""}
             </span>
         </td>
 
@@ -146,15 +198,18 @@ function crearFilaAlumno(alumno) {
 
 if (btnNuevoAlumno) {
 
-    btnNuevoAlumno.addEventListener("click", function () {
+    btnNuevoAlumno.addEventListener(
+        "click",
+        function () {
 
-        formularioAlumno.reset();
+            formularioAlumno.reset();
 
-        filaAlumnoEditando = null;
+            filaAlumnoEditando = null;
 
-        modalAlumno.classList.add("activo");
+            modalAlumno.classList.add("activo");
 
-    });
+        }
+    );
 
 }
 
@@ -165,15 +220,18 @@ if (btnNuevoAlumno) {
 
 if (cerrarModal) {
 
-    cerrarModal.addEventListener("click", function () {
+    cerrarModal.addEventListener(
+        "click",
+        function () {
 
-        modalAlumno.classList.remove("activo");
+            modalAlumno.classList.remove("activo");
 
-        formularioAlumno.reset();
+            formularioAlumno.reset();
 
-        filaAlumnoEditando = null;
+            filaAlumnoEditando = null;
 
-    });
+        }
+    );
 
 }
 
@@ -184,15 +242,18 @@ if (cerrarModal) {
 
 if (cancelarAlumno) {
 
-    cancelarAlumno.addEventListener("click", function () {
+    cancelarAlumno.addEventListener(
+        "click",
+        function () {
 
-        modalAlumno.classList.remove("activo");
+            modalAlumno.classList.remove("activo");
 
-        formularioAlumno.reset();
+            formularioAlumno.reset();
 
-        filaAlumnoEditando = null;
+            filaAlumnoEditando = null;
 
-    });
+        }
+    );
 
 }
 
@@ -203,171 +264,181 @@ if (cancelarAlumno) {
 
 if (formularioAlumno) {
 
-    formularioAlumno.addEventListener("submit", function (evento) {
+    formularioAlumno.addEventListener(
+        "submit",
+        async function (evento) {
 
-        evento.preventDefault();
+            evento.preventDefault();
 
+            // ==========================================
+            // OBTENER DATOS
+            // ==========================================
 
-        // ==========================================
-        // OBTENER DATOS
-        // ==========================================
+            const dni =
+                document
+                    .getElementById("dni")
+                    .value
+                    .trim();
 
-        const codigo =
-            document.getElementById("codigo").value.trim();
+            const apellidos =
+                document
+                    .getElementById("apellidos")
+                    .value
+                    .trim();
 
-        const dni =
-            document.getElementById("dni").value.trim();
+            const nombres =
+                document
+                    .getElementById("nombres")
+                    .value
+                    .trim();
 
-        const apellidos =
-            document.getElementById("apellidos").value.trim();
+            const grado =
+                document
+                    .getElementById("grado")
+                    .value;
 
-        const nombres =
-            document.getElementById("nombres").value.trim();
-
-        const grado =
-            document.getElementById("grado").value;
-
-        const seccion =
-            document.getElementById("seccion").value;
-
-
-        // ==========================================
-        // CREAR OBJETO
-        // ==========================================
-
-        const alumno = {
-
-            codigo: codigo,
-
-            dni: dni,
-
-            apellidos: apellidos,
-
-            nombres: nombres,
-
-            grado: grado,
-
-            seccion: seccion
-
-        };
+            const seccion =
+                document
+                    .getElementById("seccion")
+                    .value;
 
 
-        // ==========================================
-        // OBTENER ALUMNOS GUARDADOS
-        // ==========================================
+            // ==========================================
+            // DATOS QUE ENVIAREMOS A PHP
+            // ==========================================
 
-        let alumnos =
-            JSON.parse(localStorage.getItem("alumnos")) || [];
+            const alumno = {
 
+                dni: dni,
 
-        // ==========================================
-        // EDITAR ALUMNO EXISTENTE
-        // ==========================================
+                apellidos: apellidos,
 
-        if (filaAlumnoEditando) {
+                nombres: nombres,
 
-            const celdas =
-                filaAlumnoEditando.querySelectorAll("td");
+                grado: grado,
 
-            const codigoAnterior =
-                celdas[0].textContent.trim();
+                seccion: seccion
+
+            };
 
 
-            const indice =
-                alumnos.findIndex(function (item) {
+            try {
 
-                    return item.codigo === codigoAnterior;
+                // ==========================================
+                // EDITAR
+                // ==========================================
 
-                });
+                if (filaAlumnoEditando) {
+
+                    const id =
+                        filaAlumnoEditando.dataset.id;
 
 
-            if (indice !== -1) {
+                    const respuesta = await fetch(
+                        `${API_URL}?id=${id}`,
+                        {
+                            method: "PUT",
 
-                alumnos[indice] = alumno;
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify(alumno)
+                        }
+                    );
+
+
+                    const resultado =
+                        await respuesta.json();
+
+
+                    if (!respuesta.ok ||
+                        !resultado.success) {
+
+                        throw new Error(
+                            resultado.message ||
+                            "No se pudo actualizar el alumno."
+                        );
+                    }
+
+
+                    alert(
+                        "Alumno actualizado correctamente."
+                    );
+
+                }
+
+                // ==========================================
+                // CREAR NUEVO
+                // ==========================================
+
+                else {
+
+                    const respuesta = await fetch(
+                        API_URL,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify(alumno)
+                        }
+                    );
+
+
+                    const resultado =
+                        await respuesta.json();
+
+
+                    if (!respuesta.ok ||
+                        !resultado.success) {
+
+                        throw new Error(
+                            resultado.message ||
+                            "No se pudo registrar el alumno."
+                        );
+                    }
+
+
+                    alert(
+                        "Alumno registrado correctamente."
+                    );
+
+                }
+
+
+                // ==========================================
+                // ACTUALIZAR TABLA
+                // ==========================================
+
+                modalAlumno.classList.remove("activo");
+
+                formularioAlumno.reset();
+
+                filaAlumnoEditando = null;
+
+                await cargarAlumnos();
+
+            } catch (error) {
+
+                console.error(
+                    "Error al guardar alumno:",
+                    error
+                );
+
+                alert(
+                    error.message ||
+                    "Ocurrió un error al guardar el alumno."
+                );
 
             }
 
-
-            localStorage.setItem(
-                "alumnos",
-                JSON.stringify(alumnos)
-            );
-
-
-            filaAlumnoEditando.innerHTML = `
-
-                <td>${codigo}</td>
-
-                <td>${dni}</td>
-
-                <td>${apellidos}</td>
-
-                <td>${nombres}</td>
-
-                <td>${grado}</td>
-
-                <td>${seccion}</td>
-
-                <td>
-
-                    <button
-                        type="button"
-                        class="btn-editar">
-                        Editar
-                    </button>
-
-                    <button
-                        type="button"
-                        class="btn-eliminar">
-                        Eliminar
-                    </button>
-
-                </td>
-
-            `;
-
-
-            alert("Alumno actualizado correctamente.");
-
         }
-
-
-        // ==========================================
-        // CREAR NUEVO ALUMNO
-        // ==========================================
-
-        else {
-
-            alumnos.push(alumno);
-
-
-            localStorage.setItem(
-                "alumnos",
-                JSON.stringify(alumnos)
-            );
-
-
-            crearFilaAlumno(alumno);
-
-actualizarContador();
-
-
-            alert("Alumno registrado correctamente.");
-
-        }
-
-
-        // ==========================================
-        // CERRAR Y LIMPIAR
-        // ==========================================
-
-        modalAlumno.classList.remove("activo");
-
-        formularioAlumno.reset();
-
-        filaAlumnoEditando = null;
-
-    });
+    );
 
 }
 
@@ -376,117 +447,187 @@ actualizarContador();
 // BOTONES EDITAR Y ELIMINAR
 // ==========================================
 
-document.addEventListener("click", function (evento) {
+document.addEventListener(
+    "click",
+    async function (evento) {
+
+        // ==========================================
+        // ELIMINAR ALUMNO
+        // ==========================================
+
+        if (
+            evento.target.classList.contains(
+                "btn-eliminar"
+            )
+        ) {
+
+            const fila =
+                evento.target.closest("tr");
+
+            const id =
+                fila.dataset.id;
+
+            const confirmar =
+                confirm(
+                    "¿Está seguro de eliminar este alumno?"
+                );
 
 
-    // ==========================================
-    // ELIMINAR ALUMNO
-    // ==========================================
-
-    if (
-        evento.target.classList.contains("btn-eliminar")
-    ) {
-
-        const fila =
-            evento.target.closest("tr");
+            if (!confirmar) {
+                return;
+            }
 
 
-        const celdas =
-            fila.querySelectorAll("td");
+            try {
+
+                const respuesta = await fetch(
+                    `${API_URL}?id=${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
 
 
-        const codigo =
-            celdas[0].textContent.trim();
+                const resultado =
+                    await respuesta.json();
 
 
-        const confirmar =
-            confirm(
-                "¿Está seguro de eliminar este alumno?"
-            );
+                if (!respuesta.ok ||
+                    !resultado.success) {
+
+                    throw new Error(
+                        resultado.message ||
+                        "No se pudo eliminar el alumno."
+                    );
+                }
 
 
-        if (confirmar) {
-
-            let alumnos =
-                JSON.parse(localStorage.getItem("alumnos")) || [];
-
-
-            alumnos =
-                alumnos.filter(function (alumno) {
-
-                    return alumno.codigo !== codigo;
-
-                });
+                alert(
+                    "Alumno eliminado correctamente."
+                );
 
 
-            localStorage.setItem(
-                "alumnos",
-                JSON.stringify(alumnos)
-            );
+                await cargarAlumnos();
+
+            } catch (error) {
+
+                console.error(
+                    "Error al eliminar alumno:",
+                    error
+                );
+
+                alert(
+                    error.message ||
+                    "Ocurrió un error al eliminar."
+                );
+            }
+
+        }
 
 
-            fila.remove();
+        // ==========================================
+        // EDITAR ALUMNO
+        // ==========================================
 
-actualizarContador();
+        if (
+            evento.target.classList.contains(
+                "btn-editar"
+            )
+        ) {
 
-            alert("Alumno eliminado correctamente.");
+            const fila =
+                evento.target.closest("tr");
+
+            const id =
+                fila.dataset.id;
+
+
+            try {
+
+                const respuesta = await fetch(
+                    `${API_URL}?id=${id}`
+                );
+
+
+                const resultado =
+                    await respuesta.json();
+
+
+                if (!respuesta.ok ||
+                    !resultado.success) {
+
+                    throw new Error(
+                        resultado.message ||
+                        "No se pudo obtener el alumno."
+                    );
+                }
+
+
+                const alumno =
+                    resultado.data;
+
+
+                filaAlumnoEditando = fila;
+
+
+                // ==========================================
+                // CARGAR DATOS EN EL FORMULARIO
+                // ==========================================
+
+                document
+                    .getElementById("codigo")
+                    .value =
+                    "ALU-" +
+                    String(alumno.id_estudiante)
+                        .padStart(3, "0");
+
+                document
+                    .getElementById("dni")
+                    .value =
+                    alumno.dni ?? "";
+
+                document
+                    .getElementById("apellidos")
+                    .value =
+                    alumno.apellidos;
+
+                document
+                    .getElementById("nombres")
+                    .value =
+                    alumno.nombres;
+
+                document
+                    .getElementById("grado")
+                    .value =
+                    alumno.grado;
+
+                document
+                    .getElementById("seccion")
+                    .value =
+                    alumno.seccion;
+
+
+                modalAlumno.classList.add(
+                    "activo"
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Error al obtener alumno:",
+                    error
+                );
+
+                alert(
+                    error.message ||
+                    "No se pudo cargar el alumno."
+                );
+            }
 
         }
 
     }
-
-
-    // ==========================================
-    // EDITAR ALUMNO
-    // ==========================================
-
-    if (
-        evento.target.classList.contains("btn-editar")
-    ) {
-
-        const fila =
-            evento.target.closest("tr");
-
-
-        const celdas =
-            fila.querySelectorAll("td");
-
-
-        filaAlumnoEditando = fila;
-
-
-        // ==========================================
-        // CARGAR DATOS EN EL FORMULARIO
-        // ==========================================
-
-        document.getElementById("codigo").value =
-            celdas[0].textContent.trim();
-
-        document.getElementById("dni").value =
-            celdas[1].textContent.trim();
-
-        document.getElementById("apellidos").value =
-            celdas[2].textContent.trim();
-
-        document.getElementById("nombres").value =
-            celdas[3].textContent.trim();
-
-        document.getElementById("grado").value =
-            celdas[4].textContent.trim();
-
-        document.getElementById("seccion").value =
-            celdas[5].textContent.trim();
-
-
-        // ==========================================
-        // ABRIR MODAL
-        // ==========================================
-
-        modalAlumno.classList.add("activo");
-
-    }
-
-});
+);
 
 
 // ==========================================
@@ -495,35 +636,43 @@ actualizarContador();
 
 if (buscarAlumno) {
 
-    buscarAlumno.addEventListener("input", function () {
+    buscarAlumno.addEventListener(
+        "input",
+        function () {
 
-        const texto =
-            buscarAlumno.value.toLowerCase().trim();
-
-
-        const filas =
-            tablaAlumnos.querySelectorAll("tr");
-
-
-        filas.forEach(function (fila) {
-
-            const contenido =
-                fila.textContent.toLowerCase();
+            const texto =
+                buscarAlumno.value
+                    .toLowerCase()
+                    .trim();
 
 
-            if (contenido.includes(texto)) {
+            const filas =
+                tablaAlumnos.querySelectorAll("tr");
 
-                fila.style.display = "";
 
-            } else {
+            filas.forEach(function (fila) {
 
-                fila.style.display = "none";
+                const contenido =
+                    fila.textContent
+                        .toLowerCase();
 
-            }
 
-        });
+                if (
+                    contenido.includes(texto)
+                ) {
 
-    });
+                    fila.style.display = "";
+
+                } else {
+
+                    fila.style.display = "none";
+
+                }
+
+            });
+
+        }
+    );
 
 }
 
