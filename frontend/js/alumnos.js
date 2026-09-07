@@ -23,6 +23,9 @@ const tablaAlumnos =
 const buscarAlumno =
     document.getElementById("buscar-alumno");
 
+const cantidadAlumnos =
+    document.getElementById("cantidad-alumnos");
+
 
 // ==========================================
 // VARIABLE PARA SABER SI ESTAMOS EDITANDO
@@ -48,6 +51,20 @@ function cargarAlumnos() {
 
     });
 
+    actualizarContador();
+}
+function actualizarContador() {
+
+    const alumnos =
+        JSON.parse(localStorage.getItem("alumnos")) || [];
+
+    if (cantidadAlumnos) {
+
+        cantidadAlumnos.textContent =
+            alumnos.length;
+
+    }
+
 }
 
 
@@ -57,43 +74,69 @@ function cargarAlumnos() {
 
 function crearFilaAlumno(alumno) {
 
-    const fila =
-        document.createElement("tr");
+    const fila = document.createElement("tr");
 
     fila.innerHTML = `
 
-        <td>${alumno.codigo}</td>
+        <td>
+            <span class="codigo-alumno">
+                ${alumno.codigo}
+            </span>
+        </td>
 
-        <td>${alumno.dni}</td>
+        <td>
+            <span class="dato-dni">
+                ${alumno.dni}
+            </span>
+        </td>
 
-        <td>${alumno.apellidos}</td>
+        <td>
+            <strong>
+                ${alumno.apellidos}
+            </strong>
+        </td>
 
-        <td>${alumno.nombres}</td>
+        <td>
+            ${alumno.nombres}
+        </td>
 
-        <td>${alumno.grado}</td>
+        <td>
+            <span class="badge-grado">
+                ${alumno.grado}
+            </span>
+        </td>
 
-        <td>${alumno.seccion}</td>
+        <td>
+            <span class="badge-seccion">
+                ${alumno.seccion}
+            </span>
+        </td>
 
         <td>
 
-            <button
-                type="button"
-                class="btn-editar">
-                Editar
-            </button>
+            <div class="acciones-tabla">
 
-            <button
-                type="button"
-                class="btn-eliminar">
-                Eliminar
-            </button>
+                <button
+                    type="button"
+                    class="btn-editar"
+                    title="Editar alumno">
+                    ✏️ Editar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-eliminar"
+                    title="Eliminar alumno">
+                    🗑️ Eliminar
+                </button>
+
+            </div>
 
         </td>
 
     `;
 
     tablaAlumnos.appendChild(fila);
-
 }
 
 
@@ -306,6 +349,8 @@ if (formularioAlumno) {
 
             crearFilaAlumno(alumno);
 
+actualizarContador();
+
 
             alert("Alumno registrado correctamente.");
 
@@ -382,6 +427,7 @@ document.addEventListener("click", function (evento) {
 
             fila.remove();
 
+actualizarContador();
 
             alert("Alumno eliminado correctamente.");
 

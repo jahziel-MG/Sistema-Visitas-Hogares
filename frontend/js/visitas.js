@@ -98,19 +98,17 @@ function crearFilaVisita(visita) {
         <td>${visita.estado}</td>
 
         <td>
+<button
+    type="button"
+    class="btn-editar-profesor btn-editar">
+    ✏️ Editar
+</button>
 
-            <button
-                type="button"
-                class="btn-editar-visita">
-                Editar
-            </button>
-
-            <button
-                type="button"
-                class="btn-eliminar-visita">
-                Eliminar
-            </button>
-
+<button
+    type="button"
+    class="btn-eliminar-profesor btn-eliminar">
+    🗑️ Eliminar
+</button>
         </td>
 
     `;

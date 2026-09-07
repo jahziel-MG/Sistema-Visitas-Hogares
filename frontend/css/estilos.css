@@ -1,6 +1,7 @@
-/* =========================================
-   CONFIGURACIÓN GENERAL
-========================================= */
+/* =========================================================
+   SISTEMA DE VISITAS A HOGARES
+   DISEÑO PROFESIONAL - ALUMNOS / PROFESORES / VISITAS
+========================================================= */
 
 * {
     margin: 0;
@@ -8,539 +9,585 @@
     box-sizing: border-box;
 }
 
+:root {
+    --azul: #2563eb;
+    --azul-oscuro: #172554;
+    --azul-hover: #1d4ed8;
+    --fondo: #f1f5f9;
+    --blanco: #ffffff;
+    --texto: #0f172a;
+    --texto-secundario: #64748b;
+    --borde: #e2e8f0;
+    --verde: #16a34a;
+    --rojo: #dc2626;
+    --sombra: 0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f6f9;
-    color: #1f2937;
-    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
 }
 
 
-/* =========================================
-   ENCABEZADO
-========================================= */
+/* =========================================================
+   HEADER
+========================================================= */
 
 header {
-    background-color: #123b6d;
+    height: 76px;
+
+    background: linear-gradient(
+        135deg,
+        #172554,
+        #1e3a8a
+    );
+
     color: white;
-    padding: 18px 50px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 0 50px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-}
 
-.logo h1 {
-    font-size: 22px;
-}
+/* LOGO */
 
+header .logo {
+    font-size: 21px;
+    font-weight: 700;
 
-/* =========================================
-   MENÚ
-========================================= */
-
-nav {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
     color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
 
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 0;
 
-    transition: 0.3s;
-}
-
-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    letter-spacing: -0.3px;
 }
 
 
-/* =========================================
-   CONTENIDO PRINCIPAL
-========================================= */
+/* =========================================================
+   MENÚ
+========================================================= */
+
+header nav {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+header nav a {
+    position: relative;
+
+    color: #dbeafe;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 11px 17px;
+
+    border-radius: 9px;
+
+    transition: all 0.25s ease;
+}
+
+header nav a:hover {
+    color: white;
+    background: rgba(255,255,255,0.12);
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
 
 main {
-    width: 90%;
-    max-width: 1200px;
-    margin: 40px auto;
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    padding: 40px 45px;
 }
 
 
-/* =========================================
-   BIENVENIDA
-========================================= */
-
-.bienvenida {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-
-    margin-bottom: 30px;
-}
-
-.bienvenida h1 {
-    font-size: 30px;
-    margin-bottom: 12px;
-    color: #123b6d;
-}
-
-.bienvenida p {
-    font-size: 16px;
-    color: #6b7280;
-    margin-bottom: 25px;
-    line-height: 1.6;
-}
-
-.btn-principal {
-    display: inline-block;
-
-    background-color: #2563eb;
-    color: white;
-
-    text-decoration: none;
-
-    padding: 12px 22px;
-    border-radius: 7px;
-
-    font-weight: bold;
-
-    transition: 0.3s;
-}
-
-.btn-principal:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-2px);
-}
-
-
-/* =========================================
-   TARJETAS DE RESUMEN
-========================================= */
-
-.resumen {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 25px;
-
-    margin-bottom: 40px;
-}
-
-.tarjeta {
-    background-color: white;
-
-    padding: 25px;
-
-    border-radius: 12px;
-
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-
-    border-left: 5px solid #2563eb;
-}
-
-.tarjeta h2 {
-    font-size: 17px;
-    color: #6b7280;
-    margin-bottom: 10px;
-}
-
-.numero {
-    font-size: 35px;
-    font-weight: bold;
-    color: #123b6d;
-
-    margin-bottom: 12px;
-}
-
-.tarjeta a {
-    color: #2563eb;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.tarjeta a:hover {
-    text-decoration: underline;
-}
-
-
-/* =========================================
-   ACCESOS RÁPIDOS
-========================================= */
-
-.accesos {
-    margin-bottom: 40px;
-}
-
-.accesos h2 {
-    margin-bottom: 20px;
-    color: #123b6d;
-}
-
-.acciones {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 20px;
-}
-
-.accion {
-    background-color: white;
-
-    padding: 25px;
-
-    border-radius: 12px;
-
-    text-decoration: none;
-    color: #1f2937;
-
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-
-    transition: 0.3s;
-}
-
-.accion:hover {
-    transform: translateY(-5px);
-
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-}
-
-.accion span {
-    display: block;
-
-    font-size: 32px;
-
-    margin-bottom: 15px;
-}
-
-.accion strong {
-    display: block;
-
-    color: #123b6d;
-
-    margin-bottom: 8px;
-}
-
-.accion p {
-    color: #6b7280;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================
-   PIE DE PÁGINA
-========================================= */
-
-footer {
-    text-align: center;
-
-    padding: 25px;
-
-    background-color: #123b6d;
-
-    color: white;
-
-    margin-top: 50px;
-
-    font-size: 14px;
-}
-
-
-/* =========================================
-   DISEÑO RESPONSIVO
-========================================= */
-
-@media (max-width: 900px) {
-
-    .acciones {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .resumen {
-        grid-template-columns: 1fr;
-    }
-
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    main {
-        width: 94%;
-    }
-
-    .acciones {
-        grid-template-columns: 1fr;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .bienvenida {
-        padding: 25px;
-    }
-
-    .bienvenida h1 {
-        font-size: 24px;
-    }
-}
-/* =========================================
-   PÁGINA DE GESTIÓN
-========================================= */
+/* =========================================================
+   CABECERA DE PÁGINA
+========================================================= */
 
 .pagina-header {
-    background-color: white;
-    padding: 30px 35px;
-    border-radius: 12px;
+    position: relative;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
+    min-height: 190px;
+
+    padding: 38px 42px;
 
     margin-bottom: 25px;
 
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-}
+    background: white;
 
-.pagina-header h1 {
-    color: #123b6d;
-    font-size: 30px;
-    margin: 8px 0;
-}
+    border: 1px solid var(--borde);
 
-.pagina-header p {
-    color: #6b7280;
-    line-height: 1.5;
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: var(--sombra);
 }
 
 
-/* =========================================
-   ETIQUETA
-========================================= */
+/* línea azul lateral */
+
+.pagina-header::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background: linear-gradient(
+        180deg,
+        #2563eb,
+        #60a5fa
+    );
+}
+
+
+/* etiqueta */
 
 .etiqueta {
     display: inline-block;
 
-    font-size: 11px;
-    font-weight: bold;
+    padding: 6px 11px;
 
-    color: #2563eb;
+    background: #eff6ff;
+
+    color: var(--azul);
+
+    border-radius: 6px;
+
+    font-size: 11px;
+
+    font-weight: 800;
 
     letter-spacing: 1px;
 }
 
 
-/* =========================================
-   BUSCADOR
-========================================= */
+/* título */
 
-.busqueda {
-    background-color: white;
+.pagina-header h1 {
+    margin-top: 10px;
+    margin-bottom: 7px;
 
-    padding: 20px;
+    font-size: 36px;
 
-    border-radius: 12px;
+    font-weight: 750;
 
-    margin-bottom: 25px;
+    letter-spacing: -1px;
 
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    color: #0f172a;
 }
 
-#buscar-alumno {
-    width: 100%;
 
-    padding: 13px 15px;
+/* descripción */
 
-    border: 1px solid #d1d5db;
-
-    border-radius: 7px;
+.pagina-header p {
+    color: var(--texto-secundario);
 
     font-size: 15px;
 
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOTÓN PRINCIPAL
+========================================================= */
+
+.btn-principal {
+    border: none;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+
+    transition: all 0.25s ease;
+}
+
+.btn-principal:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.30);
+
+    background: linear-gradient(
+        135deg,
+        #1d4ed8,
+        #1e40af
+    );
+}
+
+
+/* =========================================================
+   BUSCADOR
+========================================================= */
+
+.busqueda {
+    width: 100%;
+
+    background: white;
+
+    padding: 18px;
+
+    margin-bottom: 22px;
+
+    border: 1px solid var(--borde);
+
+    border-radius: 15px;
+
+    box-shadow: var(--sombra);
+}
+
+.busqueda input {
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    padding: 0 16px;
+
+    color: var(--texto);
+
+    font-size: 14px;
+
     outline: none;
+
+    transition: all 0.25s ease;
 }
 
-#buscar-alumno:focus {
-    border-color: #2563eb;
+.busqueda input::placeholder {
+    color: #94a3b8;
+}
 
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+.busqueda input:hover {
+    border-color: #bfdbfe;
+}
+
+.busqueda input:focus {
+    background: white;
+
+    border-color: var(--azul);
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
 }
 
 
-/* =========================================
+/* =========================================================
    TABLA
-========================================= */
+========================================================= */
 
 .tabla-contenedor {
-    background-color: white;
+    width: 100%;
 
-    border-radius: 12px;
+    background: white;
 
-    overflow-x: auto;
+    border: 1px solid var(--borde);
 
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: var(--sombra);
 }
 
-table {
+.tabla-contenedor table {
     width: 100%;
 
     border-collapse: collapse;
-
-    min-width: 750px;
 }
 
-thead {
-    background-color: #123b6d;
 
-    color: white;
+/* CABECERA */
+
+.tabla-contenedor thead {
+    background: #f8fafc;
 }
 
-th {
-    padding: 15px;
+.tabla-contenedor th {
+    padding: 17px 20px;
 
     text-align: left;
 
+    color: #475569;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid var(--borde);
+}
+
+
+/* CELDAS */
+
+.tabla-contenedor td {
+    padding: 17px 20px;
+
+    color: #334155;
+
     font-size: 14px;
-}
 
-td {
-    padding: 14px 15px;
-
-    border-bottom: 1px solid #e5e7eb;
-
-    font-size: 14px;
-}
-
-tbody tr:hover {
-    background-color: #f8fafc;
+    border-bottom: 1px solid #eef2f7;
 }
 
 
-/* =========================================
-   BOTONES DE LA TABLA
-========================================= */
+/* FILAS */
+
+.tabla-contenedor tbody tr {
+    transition: background 0.2s ease;
+}
+
+.tabla-contenedor tbody tr:hover {
+    background: #f8fbff;
+}
+
+.tabla-contenedor tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   CÓDIGO DEL ALUMNO
+========================================================= */
+
+.tabla-contenedor td:first-child {
+    color: var(--azul);
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTONES EDITAR / ELIMINAR
+========================================================= */
 
 .btn-editar,
-.btn-eliminar,
-.btn-editar-profesor,
-.btn-eliminar-profesor {
+.btn-eliminar {
     border: none;
-    padding: 7px 12px;
-    border-radius: 5px;
+
+    padding: 8px 13px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
     cursor: pointer;
-    font-size: 13px;
-    margin-right: 5px;
+
+    transition: all 0.2s ease;
 }
 
-/* BOTÓN EDITAR */
-.btn-editar,
-.btn-editar-profesor {
-    background-color: #e0ecff;
-    color: #1d4ed8;
+
+/* EDITAR */
+
+.btn-editar {
+    color: #2563eb;
+
+    background: #eff6ff;
+
+    border: 1px solid #dbeafe;
 }
 
-/* BOTÓN ELIMINAR */
-.btn-eliminar,
-.btn-eliminar-profesor {
-    background-color: #fee2e2;
-    color: #b91c1c;
+.btn-editar:hover {
+    color: white;
+
+    background: #2563eb;
+
+    transform: translateY(-1px);
 }
 
-/* EFECTO AL PASAR EL MOUSE */
-.btn-editar:hover,
-.btn-eliminar:hover,
-.btn-editar-profesor:hover,
-.btn-eliminar-profesor:hover {
-    opacity: 0.8;
+
+/* ELIMINAR */
+
+.btn-eliminar {
+    color: #dc2626;
+
+    background: #fef2f2;
+
+    border: 1px solid #fee2e2;
 }
+
+.btn-eliminar:hover {
+    color: white;
+
+    background: #dc2626;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal {
-    display: none;
-
     position: fixed;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
-    width: 100%;
-    height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
 
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
-    z-index: 1000;
+    background: rgba(15, 23, 42, 0.65);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 2000;
 }
+
+.modal.activo {
+    display: flex;
+}
+
+
+/* CONTENIDO */
 
 .modal-contenido {
-    background-color: white;
-
     width: 100%;
-    max-width: 700px;
 
-    border-radius: 12px;
+    max-width: 680px;
 
-    padding: 30px;
+    background: white;
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.25);
+
+    animation: modalEntrada 0.25s ease;
 }
+
+@keyframes modalEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   CABECERA MODAL
+========================================================= */
 
 .modal-header {
     display: flex;
 
-    justify-content: space-between;
-
     align-items: flex-start;
 
-    margin-bottom: 25px;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
 }
 
 .modal-header h2 {
-    color: #123b6d;
+    margin-top: 8px;
 
-    margin-top: 6px;
+    color: #0f172a;
+
+    font-size: 25px;
 }
 
+
+/* BOTÓN CERRAR */
+
 .modal-header button {
-    background: none;
+    width: 38px;
+    height: 38px;
 
     border: none;
 
-    font-size: 28px;
+    border-radius: 9px;
 
-    color: #6b7280;
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    font-size: 23px;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
+.modal-header button:hover {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   FORMULARIO
+========================================================= */
 
 .form-grid {
     display: grid;
@@ -559,34 +606,50 @@ tbody tr:hover {
 }
 
 .campo label {
-    font-size: 14px;
+    color: #475569;
 
-    font-weight: bold;
+    font-size: 13px;
 
-    color: #374151;
+    font-weight: 700;
 }
 
 .campo input,
 .campo select {
-    padding: 11px 12px;
+    width: 100%;
 
-    border: 1px solid #d1d5db;
+    height: 44px;
 
-    border-radius: 7px;
+    padding: 0 13px;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #0f172a;
 
     font-size: 14px;
 
     outline: none;
 
-    background-color: white;
+    transition: 0.2s;
 }
 
 .campo input:focus,
 .campo select:focus {
-    border-color: #2563eb;
+    background: white;
 
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--azul);
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
 }
+
+
+/* =========================================================
+   BOTONES MODAL
+========================================================= */
 
 .modal-acciones {
     display: flex;
@@ -596,81 +659,527 @@ tbody tr:hover {
     gap: 10px;
 
     margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--borde);
 }
 
 .btn-cancelar {
-    background-color: #e5e7eb;
-
-    color: #374151;
-
     border: none;
 
-    padding: 12px 20px;
+    padding: 12px 18px;
 
-    border-radius: 7px;
+    border-radius: 9px;
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 700;
 
     cursor: pointer;
 
-    font-weight: bold;
+    transition: 0.2s;
 }
 
 .btn-cancelar:hover {
-    background-color: #d1d5db;
+    background: #e2e8f0;
 }
 
 
-/* =========================================
-   RESPONSIVE - ALUMNOS
-========================================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+
+    header {
+        padding: 0 25px;
+    }
+
+    main {
+        padding: 30px 25px;
+    }
 
     .pagina-header {
         flex-direction: column;
 
         align-items: flex-start;
 
-        gap: 20px;
+        gap: 25px;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .modal-contenido {
-        padding: 20px;
+}
+
+
+@media (max-width: 650px) {
+
+    header {
+        height: auto;
+
+        padding: 18px;
+
+        flex-direction: column;
+
+        gap: 15px;
     }
+
+    header nav {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    main {
+        padding: 18px;
+    }
+
+    .pagina-header {
+        padding: 28px 24px;
+    }
+
+    .pagina-header h1 {
+        font-size: 29px;
+    }
+
+    .tabla-contenedor {
+        overflow-x: auto;
+    }
+
+    .tabla-contenedor table {
+        min-width: 850px;
+    }
+
+    .modal-contenido {
+        padding: 24px;
+    }
+
 }
 
-.modal.activo {
-    display: flex;
-}
+/* ==========================================
+   DISEÑO PROFESIONAL - TABLA ALUMNOS
+========================================== */
 
-/* =========================================
-   BOTONES DE VISITAS
-========================================= */
+.codigo-alumno {
+    display: inline-flex;
+    align-items: center;
 
-.btn-editar-visita,
-.btn-eliminar-visita {
-    border: none;
-    padding: 7px 12px;
-    border-radius: 5px;
-    cursor: pointer;
+    background: #eaf1ff;
+    color: #2563eb;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
     font-size: 13px;
-    margin-right: 5px;
+    font-weight: 700;
 }
 
-.btn-editar-visita {
-    background-color: #e0ecff;
-    color: #1d4ed8;
+
+/* DNI */
+
+.dato-dni {
+    color: #64748b;
+    font-family: monospace;
+    font-size: 13px;
 }
 
-.btn-eliminar-visita {
-    background-color: #fee2e2;
-    color: #b91c1c;
+
+/* NOMBRE */
+
+.tabla-contenedor td strong {
+    color: #172b4d;
+    font-weight: 600;
 }
 
-.btn-editar-visita:hover,
-.btn-eliminar-visita:hover {
-    opacity: 0.8;
+
+/* GRADO */
+
+.badge-grado {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 38px;
+
+    padding: 6px 10px;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* SECCIÓN */
+
+.badge-seccion {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    background: #ecfdf5;
+
+    color: #059669;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   ACCIONES
+========================================== */
+
+.acciones-tabla {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.acciones-tabla button {
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+/* EDITAR */
+
+.acciones-tabla .btn-editar {
+    background: #eff6ff;
+    color: #2563eb;
+
+    border: 1px solid #dbeafe;
+}
+
+
+.acciones-tabla .btn-editar:hover {
+    background: #2563eb;
+    color: white;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.20);
+}
+
+
+/* ELIMINAR */
+
+.acciones-tabla .btn-eliminar {
+    background: #fef2f2;
+    color: #dc2626;
+
+    border: 1px solid #fee2e2;
+}
+
+
+.acciones-tabla .btn-eliminar:hover {
+    background: #dc2626;
+    color: white;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.20);
+}
+
+
+/* ==========================================
+   FILAS
+========================================== */
+
+.tabla-contenedor tbody tr {
+    transition: all 0.2s ease;
+}
+
+
+.tabla-contenedor tbody tr:hover {
+    background: #f8fbff;
+
+    box-shadow: inset 4px 0 0 #2864dc;
+}
+
+
+.tabla-contenedor td {
+    vertical-align: middle;
+}
+
+/* =========================================================
+   INICIO - DASHBOARD
+========================================================= */
+
+.estadisticas {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.tarjeta {
+    background: white;
+
+    border: 1px solid var(--borde);
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow: var(--sombra);
+
+    transition: all 0.25s ease;
+}
+
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.10);
+}
+
+
+.icono-estadistica {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    margin-bottom: 15px;
+}
+
+
+.tarjeta h3 {
+    margin-bottom: 5px;
+
+    color: #334155;
+
+    font-size: 16px;
+}
+
+
+.tarjeta strong {
+    display: block;
+
+    margin: 5px 0;
+
+    color: #0f172a;
+
+    font-size: 30px;
+}
+
+
+.tarjeta p {
+    margin-bottom: 15px;
+
+    color: var(--texto-secundario);
+
+    font-size: 13px;
+}
+
+
+.tarjeta a {
+    color: var(--azul);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.tarjeta a:hover {
+    color: var(--azul-hover);
+}
+
+
+/* =========================================================
+   PANELES
+========================================================= */
+
+.paneles-dashboard {
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+
+    gap: 20px;
+}
+
+
+.panel {
+    background: white;
+
+    border: 1px solid var(--borde);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: var(--sombra);
+}
+
+
+.panel-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px;
+
+    border-bottom: 1px solid var(--borde);
+}
+
+
+.panel-header h2 {
+    color: #0f172a;
+
+    font-size: 16px;
+}
+
+
+.panel-header a {
+    color: var(--azul);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   TABLA DEL INICIO
+========================================================= */
+
+.tabla-responsive {
+    overflow-x: auto;
+}
+
+
+.panel table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.panel th {
+    padding: 14px 18px;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-size: 11px;
+
+    text-align: left;
+
+    text-transform: uppercase;
+}
+
+
+.panel td {
+    padding: 15px 18px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+
+/* =========================================================
+   PRÓXIMAS VISITAS
+========================================================= */
+
+.proximas-visitas {
+    padding: 20px;
+}
+
+
+.sin-visitas {
+    padding: 25px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RESPONSIVE INICIO
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .paneles-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+
 }

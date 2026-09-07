@@ -2,31 +2,25 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Visitas | Sistema de Visitas a Hogares</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================================
+    <!-- ==========================================
          ENCABEZADO
-    ========================================== -->
+    =========================================== -->
 
     <header>
 
         <div class="logo">
             Sistema de Visitas a Hogares
         </div>
-
 
         <nav>
 
@@ -51,32 +45,38 @@
     </header>
 
 
-
-    <!-- =========================================
+    <!-- ==========================================
          CONTENIDO PRINCIPAL
-    ========================================== -->
+    =========================================== -->
 
     <main>
 
-
-        <!-- CABECERA DE LA PÁGINA -->
+        <!-- CABECERA DE VISITAS -->
 
         <section class="pagina-header">
 
-            <div>
+            <div class="pagina-titulo">
 
-                <span class="etiqueta">
-                    SEGUIMIENTO
-                </span>
+                <div class="icono-pagina">
+                    📅
+                </div>
 
-                <h1>
-                    Visitas a hogares
-                </h1>
+                <div>
 
-                <p>
-                    Registra y administra las visitas realizadas
-                    a los hogares de los alumnos.
-                </p>
+                    <span class="etiqueta">
+                        SEGUIMIENTO
+                    </span>
+
+                    <h1>
+                        Visitas a hogares
+                    </h1>
+
+                    <p>
+                        Registra y administra las visitas realizadas
+                        a los hogares de los alumnos.
+                    </p>
+
+                </div>
 
             </div>
 
@@ -86,33 +86,31 @@
                 class="btn-principal"
                 id="btn-nueva-visita">
 
-                + Nueva visita
+                <span>＋</span>
+                Nueva visita
 
             </button>
 
         </section>
 
 
-
-        <!-- =========================================
+        <!-- ==========================================
              BUSCADOR
-        ========================================== -->
+        =========================================== -->
+<section class="busqueda">
 
-        <section class="busqueda">
+    <input
+        type="text"
+        id="buscar-alumno"
+        placeholder="Buscar por nombre, apellido o código..."
+    >
 
-            <input
-                type="text"
-                id="buscar-visita"
-                placeholder="Buscar por alumno, profesor o estado..."
-            >
-
-        </section>
-
+</section>
 
 
-        <!-- =========================================
+        <!-- ==========================================
              TABLA DE VISITAS
-        ========================================== -->
+        =========================================== -->
 
         <section class="tabla-contenedor">
 
@@ -123,15 +121,10 @@
                     <tr>
 
                         <th>Alumno</th>
-
                         <th>Profesor</th>
-
                         <th>Fecha</th>
-
                         <th>Motivo</th>
-
                         <th>Estado</th>
-
                         <th>Acciones</th>
 
                     </tr>
@@ -140,7 +133,6 @@
 
 
                 <tbody id="tabla-visitas">
-
 
                     <!-- VISITA DE EJEMPLO -->
 
@@ -163,32 +155,37 @@
                         </td>
 
                         <td>
-                            Pendiente
+                            <span class="badge-estado pendiente">
+                                Pendiente
+                            </span>
                         </td>
 
                         <td>
 
-                            <button
-                                type="button"
-                                class="btn-editar-visita">
+                            <div class="acciones-tabla">
 
-                                Editar
+                                <button
+                                    type="button"
+                                    class="btn-editar-visita btn-editar">
 
-                            </button>
+                                    ✏️ Editar
+
+                                </button>
 
 
-                            <button
-                                type="button"
-                                class="btn-eliminar-visita">
+                                <button
+                                    type="button"
+                                    class="btn-eliminar-visita btn-eliminar">
 
-                                Eliminar
+                                    🗑️ Eliminar
 
-                            </button>
+                                </button>
+
+                            </div>
 
                         </td>
 
                     </tr>
-
 
                 </tbody>
 
@@ -196,22 +193,18 @@
 
         </section>
 
-
     </main>
 
 
-
-    <!-- =========================================
+    <!-- ==========================================
          MODAL NUEVA VISITA
-    ========================================== -->
+    =========================================== -->
 
     <div
         class="modal"
         id="modal-visita">
 
-
         <div class="modal-contenido">
-
 
             <!-- CABECERA DEL MODAL -->
 
@@ -229,7 +222,6 @@
 
                 </div>
 
-
                 <button
                     type="button"
                     id="cerrar-modal-visita">
@@ -241,14 +233,11 @@
             </div>
 
 
-
             <!-- FORMULARIO -->
 
             <form id="form-visita">
 
-
                 <div class="form-grid">
-
 
                     <!-- ALUMNO -->
 
@@ -266,7 +255,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- PROFESOR -->
@@ -287,7 +275,6 @@
                     </div>
 
 
-
                     <!-- FECHA -->
 
                     <div class="campo">
@@ -303,7 +290,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- MOTIVO -->
@@ -347,7 +333,6 @@
                     </div>
 
 
-
                     <!-- ESTADO -->
 
                     <div class="campo">
@@ -385,7 +370,6 @@
                     </div>
 
 
-
                     <!-- OBSERVACIONES -->
 
                     <div class="campo">
@@ -402,9 +386,7 @@
 
                     </div>
 
-
                 </div>
-
 
 
                 <!-- BOTONES -->
@@ -420,7 +402,6 @@
 
                     </button>
 
-
                     <button
                         type="submit"
                         class="btn-principal">
@@ -431,20 +412,16 @@
 
                 </div>
 
-
             </form>
-
 
         </div>
 
     </div>
 
 
-
     <!-- JAVASCRIPT -->
 
     <script src="../js/visitas.js"></script>
-
 
 </body>
 

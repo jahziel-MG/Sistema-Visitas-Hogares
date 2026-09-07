@@ -60,17 +60,17 @@ function cargarProfesores() {
 
             <td>
 
-                <button
-                    type="button"
-                    class="btn-editar-profesor">
-                    Editar
-                </button>
+             <button
+    type="button"
+    class="btn-editar-profesor btn-editar">
+    ✏️ Editar
+</button>
 
-                <button
-                    type="button"
-                    class="btn-eliminar-profesor">
-                    Eliminar
-                </button>
+<button
+    type="button"
+    class="btn-eliminar-profesor btn-eliminar">
+    🗑️ Eliminar
+</button>
 
             </td>
 

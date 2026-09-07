@@ -2,25 +2,24 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sistema de Visitas a Hogares</title>
 
     <link rel="stylesheet" href="css/estilos.css">
-
 </head>
 
 <body>
 
-    <!-- ENCABEZADO -->
+    <!-- ==============================
+         HEADER
+    =============================== -->
 
     <header>
 
         <div class="logo">
-            <h1>Sistema de Visitas a Hogares</h1>
+            Sistema de Visitas a Hogares
         </div>
 
         <nav>
@@ -46,136 +45,236 @@
     </header>
 
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ==============================
+         CONTENIDO PRINCIPAL
+    =============================== -->
 
     <main>
 
         <!-- BIENVENIDA -->
 
-        <section class="bienvenida">
+        <section class="pagina-header">
 
-            <h1>
-                Bienvenido al Sistema de Visitas a Hogares
-            </h1>
+            <div>
 
-            <p>
-                Sistema web para gestionar y registrar
-                las visitas a los hogares de los estudiantes.
-            </p>
+                <span class="etiqueta">
+                    SISTEMA DE GESTIÓN
+                </span>
+
+                <h1>
+                    Sistema de Visitas a Hogares
+                </h1>
+
+                <p>
+                    Gestiona y registra las visitas a los hogares
+                    de los estudiantes de manera rápida,
+                    organizada y segura.
+                </p>
+
+            </div>
 
             <a
                 href="pages/registrar-visita.html"
-                class="btn-principal">
-
-                Registrar nueva visita
-
+                class="btn-principal"
+            >
+                ＋ Registrar nueva visita
             </a>
 
         </section>
 
 
-        <!-- RESUMEN -->
+        <!-- ==============================
+             ESTADÍSTICAS
+        =============================== -->
 
-       <section class="resumen">
-
-    <div class="tarjeta">
-        <h2>Alumnos</h2>
-        <p class="numero" id="contador-alumnos">0</p>
-        <a href="pages/alumnos.html">Gestionar alumnos</a>
-    </div>
-
-    <div class="tarjeta">
-        <h2>Profesores</h2>
-        <p class="numero" id="contador-profesores">0</p>
-        <a href="pages/profesores.html">Gestionar profesores</a>
-    </div>
-
-    <div class="tarjeta">
-        <h2>Visitas</h2>
-        <p class="numero" id="contador-visitas">0</p>
-        <a href="pages/visitas.html">Ver visitas</a>
-    </div>
-
-</section>
-
-        <!-- ACCESOS RÁPIDOS -->
-
-        <section class="accesos">
-
-            <h2>
-                Accesos rápidos
-            </h2>
-
-            <div class="acciones">
+        <section class="estadisticas">
 
 
-                <a
-                    href="pages/alumnos.html"
-                    class="accion">
+            <!-- ALUMNOS -->
 
-                    <span>👨‍🎓</span>
+            <div class="tarjeta">
 
-                    <strong>
-                        Gestionar alumnos
-                    </strong>
+                <div class="icono-estadistica">
+                    👥
+                </div>
 
-                    <p>
-                        Registrar y consultar alumnos.
-                    </p>
+                <h3>
+                    Alumnos
+                </h3>
 
+                <strong id="total-alumnos">
+                    0
+                </strong>
+
+                <p>
+                    Estudiantes registrados
+                </p>
+
+                <a href="pages/alumnos.html">
+                    Gestionar alumnos →
                 </a>
 
+            </div>
 
-                <a
-                    href="pages/profesores.html"
-                    class="accion">
 
-                    <span>👨‍🏫</span>
+            <!-- PROFESORES -->
 
-                    <strong>
-                        Gestionar profesores
-                    </strong>
+            <div class="tarjeta">
 
-                    <p>
-                        Registrar profesores, cursos y secciones.
-                    </p>
+                <div class="icono-estadistica">
+                    🎓
+                </div>
 
+                <h3>
+                    Profesores
+                </h3>
+
+                <strong id="total-profesores">
+                    0
+                </strong>
+
+                <p>
+                    Profesores registrados
+                </p>
+
+                <a href="pages/profesores.html">
+                    Gestionar profesores →
                 </a>
 
+            </div>
 
-                <a
-                    href="pages/registrar-visita.html"
-                    class="accion">
 
-                    <span>📝</span>
+            <!-- VISITAS -->
 
-                    <strong>
-                        Registrar visita
-                    </strong>
+            <div class="tarjeta">
 
-                    <p>
-                        Registrar la información de una visita.
-                    </p>
+                <div class="icono-estadistica">
+                    📅
+                </div>
 
+                <h3>
+                    Visitas
+                </h3>
+
+                <strong id="total-visitas">
+                    0
+                </strong>
+
+                <p>
+                    Visitas registradas
+                </p>
+
+                <a href="pages/visitas.html">
+                    Ver visitas →
                 </a>
 
+            </div>
 
-                <a
-                    href="pages/visitas.html"
-                    class="accion">
 
-                    <span>📋</span>
+            <!-- REPORTES -->
 
-                    <strong>
-                        Consultar visitas
-                    </strong>
+            <div class="tarjeta">
 
-                    <p>
-                        Consultar las visitas registradas.
-                    </p>
+                <div class="icono-estadistica">
+                    📄
+                </div>
 
+                <h3>
+                    Reportes
+                </h3>
+
+                <strong>
+                    0
+                </strong>
+
+                <p>
+                    Reportes generados
+                </p>
+
+                <a href="#">
+                    Ver reportes →
                 </a>
 
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             PANELES
+        =============================== -->
+
+        <section class="paneles-dashboard">
+
+
+            <!-- ÚLTIMAS VISITAS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        🕐 Últimas visitas registradas
+                    </h2>
+
+                    <a href="pages/visitas.html">
+                        Ver todas
+                    </a>
+
+                </div>
+
+                <div class="tabla-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Alumno</th>
+                                <th>Profesor</th>
+                                <th>Estado</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="ultimas-visitas">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRÓXIMAS VISITAS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        📅 Próximas visitas
+                    </h2>
+
+                    <a href="pages/visitas.html">
+                        Ver todas
+                    </a>
+
+                </div>
+
+                <div
+                    class="proximas-visitas"
+                    id="proximas-visitas"
+                >
+
+                    <div class="sin-visitas">
+                        No hay próximas visitas.
+                    </div>
+
+                </div>
 
             </div>
 
@@ -184,15 +283,7 @@
     </main>
 
 
-    <!-- PIE DE PÁGINA -->
-
-    <footer>
-
-        <p>
-            Sistema de Visitas a Hogares &copy; 2026
-        </p>
-
-    </footer>
+    <!-- JAVASCRIPT -->
 
     <script src="js/app.js"></script>
 
