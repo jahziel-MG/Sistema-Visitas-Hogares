@@ -2,283 +2,424 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sistema de Visitas a Hogares</title>
+    <title>Inicio | Visitas a Hogares</title>
 
     <link rel="stylesheet" href="css/estilos.css">
+
 </head>
 
-<body>
+<body class="dashboard-body">
 
-    <!-- ==============================
-         HEADER
-    =============================== -->
+    <!-- ==========================================
+         BARRA LATERAL
+    =========================================== -->
 
-    <header>
+    <aside class="sidebar">
 
-        <div class="logo">
-            Sistema de Visitas a Hogares
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                G
+            </div>
+
+            <div>
+                <strong>Visitas a Hogares</strong>
+                <span>IEP Johannes Gutenberg</span>
+            </div>
+
         </div>
 
-        <nav>
 
-            <a href="index.html">
+        <!-- MENÚ -->
+
+        <div class="sidebar-seccion">
+            INTRANET ESCOLAR
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="index.html" class="activo">
+                <span>▦</span>
                 Inicio
             </a>
 
             <a href="pages/alumnos.html">
-                Alumnos
+                <span>♙</span>
+                Estudiantes
             </a>
 
             <a href="pages/profesores.html">
+                <span>♧</span>
                 Profesores
             </a>
 
+            <a href="#">
+                <span>♧</span>
+                Apoderados
+            </a>
+
             <a href="pages/visitas.html">
-                Visitas
+                <span>⌂</span>
+                Visitas a hogares
+            </a>
+
+            <a href="pages/registrar-visita.html">
+                <span>＋</span>
+                Registrar visita
             </a>
 
         </nav>
 
-    </header>
+
+        <!-- PARTE INFERIOR -->
+
+        <div class="sidebar-footer">
+
+            <strong>
+                Programa de visitas
+            </strong>
+
+            <span>
+                Familia y escuela, en contacto.
+            </span>
+
+            <small>
+                Versión de prueba · 2026
+            </small>
+
+        </div>
+
+    </aside>
 
 
-    <!-- ==============================
-         CONTENIDO PRINCIPAL
-    =============================== -->
+    <!-- ==========================================
+         CONTENIDO
+    =========================================== -->
 
-    <main>
+    <main class="dashboard-main">
 
-        <!-- BIENVENIDA -->
 
-        <section class="pagina-header">
+        <!-- ======================================
+             BARRA SUPERIOR
+        ======================================= -->
 
-            <div>
+        <header class="dashboard-header">
 
-                <span class="etiqueta">
-                    SISTEMA DE GESTIÓN
-                </span>
+            <div class="breadcrumb">
+                Gestión escolar / <strong>Inicio</strong>
+            </div>
 
-                <h1>
-                    Sistema de Visitas a Hogares
-                </h1>
 
-                <p>
-                    Gestiona y registra las visitas a los hogares
-                    de los estudiantes de manera rápida,
-                    organizada y segura.
-                </p>
+            <div class="usuario-header">
+
+                <div class="usuario-avatar">
+                    PA
+                </div>
+
+                <div class="usuario-info">
+
+                    <strong id="nombre-usuario">
+                        Pablo
+                    </strong>
+
+                    <span>
+                        administrador
+                    </span>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-salir"
+                    id="btn-cerrar-sesion"
+                    title="Cerrar sesión">
+
+                    ↪
+
+                </button>
 
             </div>
 
-            <a
-                href="pages/registrar-visita.html"
-                class="btn-principal"
-            >
-                ＋ Registrar nueva visita
-            </a>
-
-        </section>
+        </header>
 
 
-        <!-- ==============================
-             ESTADÍSTICAS
-        =============================== -->
+        <!-- ======================================
+             CONTENIDO DEL DASHBOARD
+        ======================================= -->
 
-        <section class="estadisticas">
+        <div class="dashboard-contenido">
 
 
-            <!-- ALUMNOS -->
+            <!-- CABECERA -->
 
-            <div class="tarjeta">
+            <section class="dashboard-titulo">
 
-                <div class="icono-estadistica">
-                    👥
+                <div>
+
+                    <span>
+                        ACOMPAÑAMIENTO ESCOLAR
+                    </span>
+
+                    <h1>
+                        Inicio
+                    </h1>
+
+                    <p>
+                        Consulta el seguimiento y organiza las próximas visitas.
+                    </p>
+
                 </div>
 
-                <h3>
-                    Alumnos
-                </h3>
 
-                <strong id="total-alumnos">
-                    0
-                </strong>
+                <a
+                    href="pages/registrar-visita.html"
+                    class="btn-registrar">
 
-                <p>
-                    Estudiantes registrados
-                </p>
+                    ＋ Registrar visita
 
-                <a href="pages/alumnos.html">
-                    Gestionar alumnos →
                 </a>
 
-            </div>
+            </section>
 
 
-            <!-- PROFESORES -->
+            <!-- ======================================
+                 ESTADÍSTICAS
+            ======================================= -->
 
-            <div class="tarjeta">
-
-                <div class="icono-estadistica">
-                    🎓
-                </div>
-
-                <h3>
-                    Profesores
-                </h3>
-
-                <strong id="total-profesores">
-                    0
-                </strong>
-
-                <p>
-                    Profesores registrados
-                </p>
-
-                <a href="pages/profesores.html">
-                    Gestionar profesores →
-                </a>
-
-            </div>
+            <section class="dashboard-estadisticas">
 
 
-            <!-- VISITAS -->
+                <!-- ESTUDIANTES -->
 
-            <div class="tarjeta">
+                <div class="dashboard-card">
 
-                <div class="icono-estadistica">
-                    📅
-                </div>
+                    <div class="card-icono">
+                        🎓
+                    </div>
 
-                <h3>
-                    Visitas
-                </h3>
+                    <span>
+                        Estudiantes
+                    </span>
 
-                <strong id="total-visitas">
-                    0
-                </strong>
+                    <strong id="total-alumnos">
+                        0
+                    </strong>
 
-                <p>
-                    Visitas registradas
-                </p>
-
-                <a href="pages/visitas.html">
-                    Ver visitas →
-                </a>
-
-            </div>
-
-
-            <!-- REPORTES -->
-
-            <div class="tarjeta">
-
-                <div class="icono-estadistica">
-                    📄
-                </div>
-
-                <h3>
-                    Reportes
-                </h3>
-
-                <strong>
-                    0
-                </strong>
-
-                <p>
-                    Reportes generados
-                </p>
-
-                <a href="#">
-                    Ver reportes →
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==============================
-             PANELES
-        =============================== -->
-
-        <section class="paneles-dashboard">
-
-
-            <!-- ÚLTIMAS VISITAS -->
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h2>
-                        🕐 Últimas visitas registradas
-                    </h2>
-
-                    <a href="pages/visitas.html">
-                        Ver todas
-                    </a>
+                    <small>
+                        Estudiantes registrados
+                    </small>
 
                 </div>
 
-                <div class="tabla-responsive">
 
-                    <table>
+                <!-- PROFESORES -->
 
-                        <thead>
+                <div class="dashboard-card">
 
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Alumno</th>
-                                <th>Profesor</th>
-                                <th>Estado</th>
-                            </tr>
+                    <div class="card-icono">
+                        ♧
+                    </div>
 
-                        </thead>
+                    <span>
+                        Profesores
+                    </span>
 
-                        <tbody id="ultimas-visitas">
+                    <strong id="total-profesores">
+                        0
+                    </strong>
 
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRÓXIMAS VISITAS -->
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <h2>
-                        📅 Próximas visitas
-                    </h2>
-
-                    <a href="pages/visitas.html">
-                        Ver todas
-                    </a>
+                    <small>
+                        Equipo docente registrado
+                    </small>
 
                 </div>
 
-                <div
-                    class="proximas-visitas"
-                    id="proximas-visitas"
-                >
 
-                    <div class="sin-visitas">
-                        No hay próximas visitas.
+                <!-- VISITAS -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-icono">
+                        ⌂
+                    </div>
+
+                    <span>
+                        Visitas
+                    </span>
+
+                    <strong id="total-visitas">
+                        0
+                    </strong>
+
+                    <small>
+                        Total de fichas registradas
+                    </small>
+
+                </div>
+
+
+                <!-- POR REALIZAR -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-icono">
+                        ▣
+                    </div>
+
+                    <span>
+                        Por realizar
+                    </span>
+
+                    <strong id="total-pendientes">
+                        0
+                    </strong>
+
+                    <small>
+                        Pendientes y programadas
+                    </small>
+
+                </div>
+
+            </section>
+
+
+            <!-- ======================================
+                 FILA PRINCIPAL
+            ======================================= -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- VISITAS RECIENTES -->
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-titulo">
+
+                        <div>
+
+                            <h2>
+                                Visitas recientes
+                            </h2>
+
+                            <p>
+                                Últimas fichas por fecha de visita
+                            </p>
+
+                        </div>
+
+
+                        <a href="pages/visitas.html">
+                            Ver todas →
+                        </a>
+
+                    </div>
+
+
+                    <div class="visitas-recientes">
+
+                        <div class="sin-datos">
+
+                            <div class="sin-datos-icono">
+                                ▤
+                            </div>
+
+                            <strong>
+                                Todavía no hay visitas
+                            </strong>
+
+                            <p>
+                                Registra la primera visita para comenzar el seguimiento.
+                            </p>
+
+                            <a
+                                href="pages/registrar-visita.html"
+                                class="btn-registrar-pequeno">
+
+                                ＋ Registrar visita
+
+                            </a>
+
+                        </div>
+
                     </div>
 
                 </div>
 
-            </div>
 
-        </section>
+                <!-- ACCESOS RÁPIDOS -->
+
+                <div class="dashboard-panel accesos-panel">
+
+                    <div class="panel-titulo">
+
+                        <div>
+
+                            <h2>
+                                Accesos rápidos
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="accesos-lista">
+
+                        <a href="pages/alumnos.html">
+                            <span>🎓</span>
+                            Registrar estudiante
+                            <b>→</b>
+                        </a>
+
+                        <a href="pages/profesores.html">
+                            <span>♧</span>
+                            Registrar profesor
+                            <b>→</b>
+                        </a>
+
+                        <a href="#">
+                            <span>♧</span>
+                            Gestionar apoderados
+                            <b>→</b>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="dashboard-info">
+
+                    <div class="info-icono">
+                        ▤
+                    </div>
+
+                    <strong>
+                        Una ficha, toda la información
+                    </strong>
+
+                    <p>
+                        Registra los datos familiares, la salud,
+                        la vivienda y el área espiritual durante
+                        la visita al hogar.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+        </div>
 
     </main>
 

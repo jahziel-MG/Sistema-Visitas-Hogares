@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar sesión | Visitas a Hogares</title>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- =========================
+             PANEL IZQUIERDO
+        ========================== -->
+
+        <section class="left-panel">
+
+            <div class="logo-container">
+
+                <div class="logo-icon">
+                    G
+                </div>
+
+                <div class="logo-text">
+                    <h3>Visitas a Hogares</h3>
+                    <span>I.E. Primavera Gutenberg</span>
+                </div>
+
+            </div>
+
+
+            <div class="left-content">
+
+                <span class="section-title">
+                    INTRANET ESCOLAR
+                </span>
+
+                <h1>
+                    Más cerca de<br>
+                    cada estudiante.
+                </h1>
+
+                <p>
+                    Un espacio para conocer a nuestras familias
+                    y acompañar su desarrollo.
+                </p>
+
+            </div>
+
+
+            <div class="left-footer">
+                Sistema de Visitas a Hogares - 2026
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PANEL DERECHO
+        ========================== -->
+
+        <section class="right-panel">
+
+            <div class="login-box">
+
+                <span class="access-title">
+                    ACCESO AL PERSONAL
+                </span>
+
+                <h2>
+                    Bienvenido de nuevo
+                </h2>
+
+                <p class="description">
+                    Ingresa tus datos para acceder a la intranet.
+                </p>
+
+
+                <form id="loginForm">
+
+                    <!-- USUARIO -->
+
+                    <div class="input-group">
+
+                        <label for="usuario">
+                            Usuario
+                        </label>
+
+                        <div class="input-container">
+
+                            <span class="icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="usuario"
+                                placeholder="Tu usuario"
+                                autocomplete="username"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTRASEÑA -->
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Contraseña
+                        </label>
+
+                        <div class="input-container">
+
+                            <span class="icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Tu contraseña"
+                                autocomplete="current-password"
+                            >
+
+                            <button
+                                type="button"
+                                id="showPassword"
+                                class="show-password">
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MENSAJE DE ERROR -->
+
+                    <div
+                        id="errorMessage"
+                        class="error-message">
+                    </div>
+
+
+                    <!-- BOTÓN -->
+
+                    <button
+                        type="submit"
+                        class="login-button">
+
+                        <span>
+                            Iniciar sesión
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <div class="help-text">
+
+                    ¿Es tu primera vez?
+                    El administrador debe crear tu cuenta.
+
+                    <br>
+
+                    Consulta el README para configurar
+                    el acceso de prueba.
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
